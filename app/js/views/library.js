@@ -13,22 +13,7 @@ app.LibraryView = Backbone.View.extend({
     this.bookListView = new app.BookListView( { collection: this.collection } );
 
     this.listenTo(this.thumbnailView, 'image-uploaded', this.updateInput);
-    // this.listenTo( this.collection, 'add', this.renderBook );
-    // this.listenTo( this.collection, 'reset', this.render );
   },
-
-  // render: function() {
-  //   this.collection.each(function( item ) {
-  //     this.renderBook( item );
-  //   }, this);
-  // },
-
-  // renderBook: function( item ) {
-  //   var bookView = new app.BookView({
-  //     model: item
-  //   });
-  //   this.$el.append( bookView.render().el );
-  // },
 
   render: function() {
     this.thumbnailView.setElement(this.$('#imageCoverUpload')).render();
@@ -71,7 +56,6 @@ app.LibraryView = Backbone.View.extend({
       $( el ).val('');
     });
 
-    // this.collection.add( new app.Book( formData ) );
     this.collection.create( formData );
     $('#uploadedImage').val('');
   }

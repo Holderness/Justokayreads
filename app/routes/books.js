@@ -26,11 +26,6 @@ var BookModel = mongoose.model( 'Book', Book );
 
 router = express.Router();
 
-// router.route('/')
-//   .get(function(req, res) {
-//     res.render('index');
-//   });
-
 router.route('/api')
   .get(function(req, res){
     res.send( 'Library API is running' );

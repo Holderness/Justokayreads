@@ -3,11 +3,38 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Books!</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Quando' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 </head>
 <body>
+
+  <div class="nav-header menu-wrapper">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="fa fa-bars"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img class="img-responsive nav-logo" src="/img/fly-pig-serious-icon.png"></a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+         <li>Books Dangerous</li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><i class="fa fa-power-off fa-2x"></i></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
 
   <div id="books">
     <div id="imageCoverUpload">
@@ -28,26 +55,25 @@
         <input type="text" id="releaseDate"/>
         <label for="keywords">Keywords: </label>
         <input type="text" id="keywords"/>
-        <button id="add">Add</button>
+        <button id="add" class="btn btn-primary">Add</button>
       </div>
     </form>
   </div>
 
-  
   <div id="bookList"></div>
 
 
   <script id="bookTemplate" type="text/template">
-  <div class="bookContainer">
-	<img src="<%= coverImage %>" alt="coverImage"/>
-	<ul>
-		<li>Title: <%= title %></li>
-		<li>Author: <%= author %></li>
-		<li>Release: <%= $.format.date( new Date( releaseDate ), 'MMMM yyyy' ) %></li>
-		<li>Keywords: &nbsp; <% _.each( keywords, function( keyobj ) { %><%= keyobj.keyword %><% } ); %></li>
-	</ul>
-	<img class="delete" src="img/delete.jpg">
-	</div>  
+    <div class="bookContainer">
+	  <img src="<%= coverImage %>" alt="coverImage"/>
+	  <ul>
+		  <li>Title: <%= title %></li>
+		  <li>Author: <%= author %></li>
+		  <li>Release: <%= $.format.date( new Date( releaseDate ), 'MMMM yyyy' ) %></li>
+		  <li>Keywords: &nbsp; <% _.each( keywords, function( keyobj ) { %><%= keyobj.keyword %><% } ); %></li>
+	  </ul>
+	  <img class="delete" src="img/delete.jpg">
+	  </div>  
   </script>
 
 	<script src="js/lib/jquery.js"></script>

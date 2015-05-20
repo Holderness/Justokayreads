@@ -2,6 +2,35 @@ body {
   background-color: #eee;
 }
 
+
+/*navbar*/
+
+.navbar {
+  min-height: 85px;
+}
+.navbar-header img {
+  height: 50px
+}
+
+.navbar-toggle {
+  margin-top: 20px;
+}
+
+.navbar-nav li {
+  padding: 15px 0 0 76px;
+  font-family: 'Quando', garamond;
+  font-size: 40px;
+}
+
+.fa-power-off {
+  font-size: 36px;
+}
+
+
+
+
+
+
 #ui-datepicker-div {display: none;}
 
 .bookContainer {
@@ -72,4 +101,9 @@ body {
 	clear: both;
 	font-size: 0;
 	line-height: 0;
+}
+
+
+#uploadedImage {
+  max-height: 100px;
 }
