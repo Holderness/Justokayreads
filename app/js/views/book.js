@@ -10,10 +10,18 @@ app.BookView = Backbone.View.extend({
 
 	initialize: function() {
     this.listenTo( this.model, 'destroy', this.remove );
-	},
 
-	render: function() {
+
+
+
+  },
+
+  render: function() {
     this.$el.html( this.template( this.model.toJSON() ));
+
+    this.$('.starrr').on('starrr:change', function(e, value){
+      alert('new rating is ' + value);
+    });
 
     return this;
 	},

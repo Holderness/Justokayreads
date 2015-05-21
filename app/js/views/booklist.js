@@ -17,6 +17,7 @@ app.BookListView = Backbone.View.extend({
       model: item
     });
     $('#bookList').append(bookView.render().el);
+    $(".starrr").starrr();
   }
 
 });

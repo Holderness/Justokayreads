@@ -7,6 +7,7 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -89,6 +90,7 @@
     </div>
   </div>
 
+
   <script id="bookTemplate" type="text/template">
     <div class="col-md-6 bookWrap">
       <div class="bookContainer col-xs-12 col-sm-12 col-md-12">
@@ -101,6 +103,7 @@
             <li>Author: <%= author %></li>
             <li>Date Completed: <%= $.format.date( new Date( releaseDate ), 'MMMM yyyy' ) %></li>
 		        <li>Keywords: &nbsp; <% _.each( keywords, function( keyobj ) { %><%= keyobj.keyword %><% } ); %></li>
+            <li>Rating:&nbsp;&nbsp;<div class='starrr'></div></li>
 	        </ul>
         </div>
         <img class="delete" src="img/delete.png">
@@ -112,6 +115,7 @@
 	<script src="js/lib/jquery-ui.js"></script>
   <script src="js/lib/jquery-dateFormat.min.js"></script>
   <script src="js/lib/jquery.form.min.js"></script>
+  <script src="js/lib/starrr.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="js/lib/underscore.js"></script>
 	<script src="js/lib/backbone.js"></script>
@@ -122,6 +126,8 @@
   <script src="js/views/thumbnail.js"></script>
   <script src="js/views/library.js"></script>
 	<script src="js/app.js"></script>
+
+
 
 
 </body>

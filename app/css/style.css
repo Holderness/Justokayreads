@@ -99,7 +99,7 @@ body {
 .bookItemListContainer {
   float: left;
   padding-top: 20px;
-  height: 100px;
+  height: 140px;
   white-space: nowrap;
   max-width: 190px;
   overflow: scroll;
@@ -197,3 +197,18 @@ body {
   font-size: 0;
   line-height: 0;
 }
+
+
+
+/*starrr*/
+
+.starrr {
+  display: inline-block; 
+  line-height: 15px;
+}
+
+.starrr i {
+    font-size: 16px;
+    padding: 0 1px;
+    cursor: pointer;
+    color: #ffd119; }
