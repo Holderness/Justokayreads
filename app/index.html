@@ -92,15 +92,19 @@
   <script id="bookTemplate" type="text/template">
     <div class="col-md-6 bookWrap">
       <div class="bookContainer col-xs-12 col-sm-12 col-md-12">
-    <img src="<%= coverImage %>" alt="coverImage"/>
-    <ul>
-      <li>Title: <%= title %></li>
-      <li>Author: <%= author %></li>
-      <li>Release: <%= $.format.date( new Date( releaseDate ), 'MMMM yyyy' ) %></li>
-		  <li>Keywords: &nbsp; <% _.each( keywords, function( keyobj ) { %><%= keyobj.keyword %><% } ); %></li>
-	  </ul>
-	  <img class="delete" src="img/delete.jpg">
-    </div>
+        <div class="bookImageContainer">
+          <img src="<%= coverImage %>" alt="coverImage"/>
+        </div>
+        <div class="bookItemListContainer">
+          <ul>
+            <li>Title: <%= title %></li>
+            <li>Author: <%= author %></li>
+            <li>Date Completed: <%= $.format.date( new Date( releaseDate ), 'MMMM yyyy' ) %></li>
+		        <li>Keywords: &nbsp; <% _.each( keywords, function( keyobj ) { %><%= keyobj.keyword %><% } ); %></li>
+	        </ul>
+        </div>
+        <img class="delete" src="img/delete.png">
+      </div>
     </div>
   </script>
 

@@ -74,27 +74,47 @@ body {
 
 .bookWrap {
   padding: 0 5px;
-  min-width: 400px;
+  min-width: 450px;
 }
 
 .bookContainer {
-  outline: 1px solid #aaa;
-  height: 130px;
+  border: 1.5px solid #aaa;
+  height: 150px;
   background-color: #fff;
   float: left;
   margin: 5px 0;
   font-size: 12px;
+  border-radius: 4px;
 }
 
-.bookContainer img {
+.bookContainer:hover {
+  border: 1.5px solid #50C8EB;
+}
+
+.bookItemListContainer {
   float: left;
-  margin: 10px;
-  height: 110px;
+  padding-top: 20px;
+  height: 100px;
+  white-space: nowrap;
+  max-width: 190px;
+  overflow: scroll;
 }
 
-.bookContainer img.delete {
-  float: right;
+.bookImageContainer {
+  float: left;
+  width: 160px;
+  text-align: center;
+}
+
+.bookImageContainer img {
   margin: 10px;
+  height: 120px;
+  max-width: 160px;
+}
+
+.bookContainer .delete {
+  float: right;
+  margin: 90px 10px 10px 10px;
   height: 35px;
   cursor: pointer;
 }
@@ -102,12 +122,18 @@ body {
 .bookContainer ul {
   list-style-type: none;
   margin-bottom: 0;
+  padding-left: 20px;
 }
 
 .bookContainer button {
   float: right;
   margin: 10px;
 }
+
+
+
+
+
 
 #addBook label {
 	width: 100px;
