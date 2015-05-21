@@ -2,6 +2,12 @@ body {
   background-color: #eee;
 }
 
+@font-face {
+    font-family: 'Quando';
+    font-style: normal;
+    src: local('Quando Regular'), local('Quando-Regular'), url(fonts/Quando/Quando-Regular.ttf) format('truetype');
+}
+
 
 /*navbar*/
 
@@ -16,6 +22,7 @@ body {
   margin-top: 20px;
 }
 
+
 .navbar-nav li {
   padding: 15px 0 0 76px;
   font-family: 'Quando', garamond;
@@ -26,6 +33,37 @@ body {
   font-size: 36px;
 }
 
+.navbar-nav li a.add-book-btn {
+  background-color: #C15030;
+  text-align: center;
+  width: 120px;
+  font-size: 16px;
+  color: #fff;
+  outline: none;
+  border-bottom: 3px solid #8C2C11;
+  border-radius: 4px;
+  margin-right: 50px;
+}
+
+.navbar-nav li a.add-book-btn:hover {
+  background-color: #C15030;
+  color: #fff;
+  margin-top: 3px;
+  border-bottom: none;
+}
+
+.navbar-nav li a.add-book-btn:focus {
+  background-color: #C15030;
+  color: #fff
+}
+
+
+#page-content {
+  padding-right: 10px;
+}
+
+
+
 
 
 
@@ -33,13 +71,18 @@ body {
 
 #ui-datepicker-div {display: none;}
 
+
+.bookWrap {
+  padding: 0 5px;
+  min-width: 400px;
+}
+
 .bookContainer {
   outline: 1px solid #aaa;
-  width: 450px;
   height: 130px;
   background-color: #fff;
   float: left;
-  margin: 5px;
+  margin: 5px 0;
   font-size: 12px;
 }
 
