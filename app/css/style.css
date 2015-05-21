@@ -58,6 +58,11 @@ body {
 }
 
 
+
+
+
+
+
 #page-content {
   padding-right: 10px;
 }
@@ -67,7 +72,7 @@ body {
 
 
 
-
+/*book template*/
 
 #ui-datepicker-div {display: none;}
 
@@ -135,11 +140,32 @@ body {
 
 
 
+
+
+
+
+/*modal*/
+
+#coverImageUpload {
+  margin: 0 auto;
+  padding-left: 68px;
+  margin-bottom: 20px;
+}
+
+#imageCoverUpload img {
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+#uploadedImage {
+  max-height: 100px;
+}
+
 #addBook label {
-	width: 100px;
-	margin-right: 10px;
-	text-align: right;
-	line-height: 25px;
+  width: 100px;
+  margin-right: 10px;
+  text-align: right;
+  line-height: 25px;
 }
 
 #addBook label, #addBook input {
@@ -149,30 +175,25 @@ body {
 }
 
 #addBook label[for='title'], #addBook label[for='releaseDate'] {
-	clear: both;
+  clear: both;
 }
 
 #addBook button {
-	display: block; margin: 5px 20px 10px 10px;
-	float: right;
-	clear: both;
+  display: block; margin: 5px 20px 10px 10px;
+  float: right;
+  clear: both;
 }
 
 #addBook div {
-	width: 550px;
+  width: 550px;
 }
 
 #addBook div:after {
-	content: "";
-	display: block;
-	height: 0;
-	visibility: hidden;
-	clear: both;
-	font-size: 0;
-	line-height: 0;
-}
-
-
-#uploadedImage {
-  max-height: 100px;
+  content: "";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+  font-size: 0;
+  line-height: 0;
 }
