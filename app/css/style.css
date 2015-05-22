@@ -84,7 +84,7 @@ body {
 
 .bookContainer {
   border: 1.5px solid #aaa;
-  height: 150px;
+  height: 125px;
   background-color: #fff;
   float: left;
   margin: 5px 0;
@@ -97,29 +97,33 @@ body {
 }
 
 .bookItemListContainer {
-  float: left;
-  padding-top: 20px;
-  height: 140px;
+  display: inline-block;
+  padding-top: 10px;
+  height: 96px;
   white-space: nowrap;
-  max-width: 190px;
+  max-width: 244px;
   overflow: scroll;
 }
 
 .bookImageContainer {
   float: left;
-  width: 160px;
+  width: 150px;
   text-align: center;
 }
 
 .bookImageContainer img {
-  margin: 10px;
-  height: 120px;
+  margin: 10px 5px 5px 5px;
+  height: 80px;
   max-width: 160px;
+  border: 1px solid #000;
+  border-radius: 4px;
 }
 
 .bookContainer .delete {
-  float: right;
-  margin: 90px 10px 10px 10px;
+  position: absolute;
+  right: 0;
+  margin-top: 70px;
+  margin-right: 10px; 
   height: 35px;
   cursor: pointer;
 }
@@ -130,11 +134,22 @@ body {
   padding-left: 20px;
 }
 
-.bookContainer button {
-  float: right;
-  margin: 10px;
+.bookInteractionBar {
+  color: #bbb;
+  padding-left: 20px;
+  font-size: 10px;
 }
 
+.bookUpdated {
+  display: inline-block;
+  width: 145px;
+}
+
+
+/*book comment will be a model to write your notes on the book in*/
+.bookComment {
+  display: inline-block;
+}
 
 
 
@@ -212,3 +227,21 @@ body {
     padding: 0 1px;
     cursor: pointer;
     color: #ffd119; }
+
+
+
+
+/*media queries*/
+
+
+@media (min-width: 600px) {
+  .bookItemListContainer {
+    max-width: 350px;
+  }
+}
+
+@media (min-width: 990px) {
+  .bookItemListContainer {
+    max-width: 244px;
+  }
+}
