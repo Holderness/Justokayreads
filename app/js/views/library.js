@@ -1,63 +1,64 @@
 var app = app || {};
 
-app.LibraryView = Backbone.View.extend({
-	el: '#books',
+(function($) {
 
-	events: {
-    'click #add': 'addBook',
-	},
+  app.LibraryView = Backbone.View.extend({
+    el: '#books',
 
-  initialize: function() {
-    this.collection = new app.Library();
-    this.thumbnailView = new app.ThumbnailView();
-    this.bookListView = new app.BookListView( { collection: this.collection } );
+    events: {
+      'click #add': 'addBook',
+    },
 
-    this.listenTo(this.thumbnailView, 'image-uploaded', this.updateInput);
-  },
+    initialize: function() {
+      this.collection = new app.BookList();
+      this.thumbnailView = new app.ThumbnailView();
+      this.bookListView = new app.BookListView( { collection: this.collection } );
 
-  render: function() {
-    this.thumbnailView.setElement(this.$('#imageCoverUpload')).render();
-    this.bookListView.setElement(this.$('#bookList'));
-  },
+      this.listenTo(this.thumbnailView, 'image-uploaded', this.updateInput);
+    },
 
-  start: function() {
-    this.render();
-    this.collection.fetch({ reset: true });
-  },
+    render: function() {
+      this.thumbnailView.setElement(this.$('#imageCoverUpload')).render();
+      this.bookListView.setElement(this.$('#bookList'));
+    },
 
-  addBook: function(e) {
-    e.preventDefault();
-    this.thumbnailView.submit();
-  },
+    start: function() {
+      this.render();
+      this.collection.fetch({ reset: true });
+    },
 
-  updateInput: function(path) {
-    console.log(path);
-    $('#coverImage').val(path);
-    this.createData();
-  },
+    addBook: function(e) {
+      e.preventDefault();
+      this.thumbnailView.submit();
+    },
 
-  createData: function( e ) {
+    updateInput: function(path) {
+      console.log(path);
+      $('#coverImage').val(path);
+      this.createData();
+    },
 
-    var formData = {};
-
-    $( '#addBook div' ).children( 'input' ).each( function( i, el ) {
-      if ( $(el).val() !== '' ) {
-        if ( el.id === 'keywords' ) {
-          formData[ el.id ] = [];
-          _.each( $( el ).val().split( ' ' ), function( keyword ) {
-            formData[ el.id ].push({ 'keyword': keyword });
-          });
-        } else if ( el.id === 'releaseDate' ) {
-          formData[ el.id ] = $( '#releaseDate' ).datepicker( 'getDate' ).getTime();
-        } else {
-          formData[ el.id ] = $( el ).val();
-        }
+    createData: function( e ) {
+      var formData = {};
+        $( '#addBook div' ).children( 'input' ).each( function( i, el ) {
+          if ( $(el).val() !== '' ) {
+            if ( el.id === 'keywords' ) {
+              formData[ el.id ] = [];
+              _.each( $( el ).val().split( ' ' ), function( keyword ) {
+                formData[ el.id ].push({ 'keyword': keyword });
+              });
+            } else if ( el.id === 'releaseDate' ) {
+              formData[ el.id ] = $( '#releaseDate' ).datepicker( 'getDate' ).getTime();
+            } else {
+              formData[ el.id ] = $( el ).val();
+            }
+          }
+          $( el ).val('');
+        });
+        this.collection.create( formData );
+        $('#uploadedImage').val('');
       }
-      $( el ).val('');
-    });
 
-    this.collection.create( formData );
-    $('#uploadedImage').val('');
-  }
+  });
 
-});
+})(jQuery);

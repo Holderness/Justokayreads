@@ -1,33 +1,33 @@
 var app = app || {};
 
-app.BookView = Backbone.View.extend({
+(function($) {
 
-	template: _.template( $('#bookTemplate').html() ),
+  app.BookView = Backbone.View.extend({
 
-	events: {
-    'click .delete': 'deleteBook'
-	},
+    template: _.template( $('#bookTemplate').html() ),
 
-	initialize: function() {
-    this.listenTo( this.model, 'destroy', this.remove );
+    events: {
+      'click .delete': 'deleteBook'
+    },
 
+    initialize: function() {
+      this.listenTo( this.model, 'destroy', this.remove );
+    },
 
+    render: function() {
+      this.$el.html( this.template( this.model.toJSON() ));
 
+      this.$('.starrr').on('starrr:change', function(e, value){
+        alert('new rating is ' + value);
+      });
 
-  },
-
-  render: function() {
-    this.$el.html( this.template( this.model.toJSON() ));
-
-    this.$('.starrr').on('starrr:change', function(e, value){
-      alert('new rating is ' + value);
-    });
-
-    return this;
-	},
+      return this;
+    },
   
-  deleteBook: function () {
-    this.model.destroy();
-	}
+    deleteBook: function () {
+      this.model.destroy();
+    }
 
-});
+  });
+
+})(jQuery);
