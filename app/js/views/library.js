@@ -10,11 +10,11 @@ var app = app || {};
     },
 
     initialize: function() {
-      this.collection = new app.BookList();
       this.thumbnailView = new app.ThumbnailView();
-      this.bookListView = new app.BookListView( { collection: this.collection } );
+      this.bookListView = new app.BookListView( { collection: app.booklist } );
 
       this.listenTo(this.thumbnailView, 'image-uploaded', this.updateInput);
+      this.listenTo(app.booklist, 'filter', this.filterAll);
     },
 
     render: function() {
@@ -24,12 +24,20 @@ var app = app || {};
 
     start: function() {
       this.render();
-      this.collection.fetch({ reset: true });
+      app.booklist.fetch({ reset: true });
     },
 
     addBook: function(e) {
       e.preventDefault();
       this.thumbnailView.submit();
+    },
+
+    filterOne: function(book) {
+      book.trigger('visible');
+    },
+
+    filterAll: function() {
+       app.booklist.each(this.filterOne, this);
     },
 
     updateInput: function(path) {
@@ -55,7 +63,7 @@ var app = app || {};
           }
           $( el ).val('');
         });
-        this.collection.create( formData );
+        app.booklist.create( formData );
         $('#uploadedImage').val('');
       }
 

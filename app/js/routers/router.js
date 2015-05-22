@@ -10,10 +10,13 @@ var app = app || {};
 
     setFilter: function(param) {
       app.BookFilter = param || '';
-      debugger;
+
+      app.booklist.trigger('filter');
     }
   });
 
 
+  app.LibraryRouter = new LibraryRouter();
+  Backbone.history.start();
 
 })();

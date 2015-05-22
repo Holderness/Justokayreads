@@ -8,4 +8,6 @@ var app = app || {};
     url: '/api/books'
   });
 
+  app.booklist = new app.BookList();
+
 })();
