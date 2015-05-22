@@ -11,8 +11,13 @@ body {
 
 /*navbar*/
 
+.nav {
+  padding-left: 40px;
+}
+
 .navbar {
   min-height: 85px;
+  min-width: 475px;
 }
 .navbar-header img {
   height: 50px
@@ -23,7 +28,8 @@ body {
 }
 
 
-.navbar-nav li {
+.appTitle {
+  display: inline-block;
   padding: 15px 0 0 76px;
   font-family: 'Quando', garamond;
   font-size: 40px;
@@ -31,6 +37,10 @@ body {
 
 .fa-power-off {
   font-size: 36px;
+}
+
+ul.navbar-nav {
+  padding-top: 15px;
 }
 
 .navbar-nav li a.add-book-btn {
@@ -243,5 +253,20 @@ body {
 @media (min-width: 990px) {
   .bookItemListContainer {
     max-width: 244px;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .appTitle {
+    display: block;
+    float: left;
+    padding: 25px 0 0 50px;
+    font-family: 'Quando', garamond;
+    font-size: 25px;
+  }
+
+  .add-book-btn {
+    padding-left: 50px;
   }
 }

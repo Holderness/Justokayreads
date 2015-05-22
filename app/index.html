@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Books!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
@@ -16,23 +17,24 @@
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="fa fa-bars"></span>
-          </button>
           <a class="navbar-brand" href="#">
             <img class="img-responsive nav-logo" src="/img/fly-pig-serious-icon.png">
           </a>
+          <div class="appTitle navbar-left">Book Dangerous</div>
+          <button type="button" class="navbar-right navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-bars"></span>
+          </button>
         </div>
-        <div id="navbar" class="navbar-collapse collapse in" aria-expanded="false">
+<!--         <div id="navbar" class="navbar-collapse collapse in" aria-expanded="false">
           <ul class="nav navbar-nav">
             <li>Woop</li>
           </ul>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-left">
-            <li>Book Dangerous</li>
-          </ul>
+        </div> -->
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="true">
+<!--           <ul class="nav navbar-nav navbar-left">
+            <li></li>
+          </ul> -->
           <ul class="nav navbar-nav navbar-right">
             <li>
                <a href="#" class="add-book-btn"
