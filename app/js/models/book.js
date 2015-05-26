@@ -9,6 +9,7 @@ var app = app || {};
         title: 'No title',
         author: 'Unknown',
         dateCompleted: 'Unknown',
+        created: new Date().toISOString(),
         stars: null,
         keywords: 'None'
     },

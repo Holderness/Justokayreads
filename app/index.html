@@ -117,7 +117,7 @@
         </div>
         <img class="delete" src="img/delete.png">
         <div class="bookInteractionBar">
-          <div class="bookUpdated">Last Updated: <%= moment().format('h:mm a') %></div>
+          <div class="bookUpdated">Last Updated: <%= moment(new Date(created)).fromNow() %></div>
           <button class="bookComment"><a href="#/booyah">Comment</a></button> 
         </div>
       </div>

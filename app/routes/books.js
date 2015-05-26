@@ -17,6 +17,7 @@ var Book = new mongoose.Schema({
 	title: String,
 	author: String,
 	dateCompleted: Date,
+  created: Date,
   stars: Number,
 	keywords: [ Keywords ]
 });
@@ -57,6 +58,7 @@ router.route('/api/books')
       title: req.body.title,
       author: req.body.author,
       dateCompleted: req.body.dateCompleted,
+      created: req.body.created,
       stars: null,
       keywords: req.body.keywords
     });
