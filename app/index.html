@@ -17,7 +17,7 @@
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="http://www.andersonholderness.com">
             <img class="img-responsive nav-logo" src="/img/fly-pig-serious-icon.png">
           </a>
           <div class="appTitle navbar-left">Book Dangerous</div>
@@ -115,7 +115,7 @@
         </div>
         <img class="delete" src="img/delete.png">
         <div class="bookInteractionBar">
-          <div class="bookUpdated">Updated: 34 minutes ago . . .</div>
+          <div class="bookUpdated">Last Updated: <%= moment().format('h:mm a') %></div>
           <button class="bookComment"><a href="#/booyah">Comment</a></button> 
         </div>
       </div>
@@ -127,6 +127,7 @@
   <script src="js/lib/jquery-dateFormat.min.js"></script>
   <script src="js/lib/jquery.form.min.js"></script>
   <script src="js/lib/starrr.js"></script>
+  <script src="js/lib/moment.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="js/lib/underscore.js"></script>
   <script src="js/lib/backbone.js"></script>
