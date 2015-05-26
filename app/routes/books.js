@@ -1,6 +1,7 @@
 
 var express = require('express'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser');
 
 
 //Connect to db
@@ -15,9 +16,13 @@ var Book = new mongoose.Schema({
   coverImage: String,
 	title: String,
 	author: String,
-	releaseDate: Date,
+	dateCompleted: Date,
+  stars: Number,
 	keywords: [ Keywords ]
 });
+
+var app = express();
+app.use(bodyParser.json());
 
 
 
@@ -51,7 +56,8 @@ router.route('/api/books')
       coverImage: req.body.coverImage,
       title: req.body.title,
       author: req.body.author,
-      releaseDate: req.body.releaseDate,
+      dateCompleted: req.body.dateCompleted,
+      stars: null,
       keywords: req.body.keywords
     });
     book.save( function( err ) {
@@ -76,19 +82,19 @@ router.route('/api/books/:id')
   })
   .put(function(req, res) {
     console.log('Updating book ' + req.body.title );
-    return BookModel.findById( request.params.id, function( err, book ) {
+    return BookModel.findById( req.params.id, function( err, book ) {
       book.title = req.body.title;
       book.author = req.body.author;
-      book.releaseDate = req.body.releaseDate;
+      book.dateCompleted = req.body.dateCompleted;
+      book.stars = req.body.stars;
       book.keywords = req.body.keywords;
-
       return book.save( function( err ) {
         if (!err) {
           console.log( 'book updated' );
         } else {
            console.log( err );
         }
-        return response.send( book );
+        return res.send( book );
       });
     });
   })

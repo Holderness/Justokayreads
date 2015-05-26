@@ -55,8 +55,8 @@ var app = app || {};
               _.each( $( el ).val().split( ' ' ), function( keyword ) {
                 formData[ el.id ].push({ 'keyword': keyword });
               });
-            } else if ( el.id === 'releaseDate' ) {
-              formData[ el.id ] = $( '#releaseDate' ).datepicker( 'getDate' ).getTime();
+            } else if ( el.id === 'dateCompleted' ) {
+              formData[ el.id ] = $( '#dateCompleted' ).datepicker( 'getDate' ).getTime();
             } else {
               formData[ el.id ] = $( el ).val();
             }

@@ -8,7 +8,8 @@ var app = app || {};
         coverImage: 'img/winnebego.jpg',
         title: 'No title',
         author: 'Unknown',
-        releaseDate: 'Unknown',
+        dateCompleted: 'Unknown',
+        stars: null,
         keywords: 'None'
     },
 

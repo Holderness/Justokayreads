@@ -74,10 +74,12 @@
                       <input type="text" id="title"/>
                       <label for="author">Author: </label>
                       <input type="text" id="author"/>
-                      <label for="releaseDate">Release Date: </label>
-                      <input type="text" id="releaseDate"/>
+                      <label for="dateCompleted">Completed: </label>
+                      <input type="text" id="dateCompleted"/>
                       <label for="keywords">Keywords: </label>
                       <input type="text" id="keywords"/>
+<!--                       <label for="stars">Rating: </label>
+                      <div class='starrr'></div> -->
                       <button id="add" class="btn btn-primary hidden">Add</button>
                     </div>
                   </form>
@@ -108,9 +110,9 @@
           <ul>
             <li>Title: <%= title %></li>
             <li>Author: <%= author %></li>
-            <li>Date Completed: <%= $.format.date( new Date( releaseDate ), 'MMMM yyyy' ) %></li>
+            <li>Date Completed: <%= $.format.date( new Date( dateCompleted ), 'MMMM yyyy' ) %></li>
 		        <li>Keywords: &nbsp; <% _.each( keywords, function( keyobj ) { %><%= keyobj.keyword %><% } ); %></li>
-            <li>Rating:&nbsp;&nbsp;<div class='starrr'></div></li>
+            <li>Rating:&nbsp;&nbsp;<div class='starrr' data-rating="<%= stars %>"></div></li>
 	        </ul>
         </div>
         <img class="delete" src="img/delete.png">

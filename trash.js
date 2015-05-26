@@ -13,8 +13,8 @@
         <input type="text" id="title"/>
         <label for="author">Author: </label>
         <input type="text" id="author"/>
-        <label for="releaseDate">Release Date: </label>
-        <input type="text" id="releaseDate"/>
+        <label for="dateCompleted">Release Date: </label>
+        <input type="text" id="dateCompleted"/>
         <label for="keywords">Keywords: </label>
         <input type="text" id="keywords"/>
         <button id="add" class="btn btn-primary">Add</button>

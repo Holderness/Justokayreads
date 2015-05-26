@@ -199,7 +199,7 @@ ul.navbar-nav {
   float: left;
 }
 
-#addBook label[for='title'], #addBook label[for='releaseDate'] {
+#addBook label[for='title'], #addBook label[for='dateCompleted'] {
   clear: both;
 }
 

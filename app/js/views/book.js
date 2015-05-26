@@ -7,7 +7,8 @@ var app = app || {};
     template: _.template( $('#bookTemplate').html() ),
 
     events: {
-      'click .delete': 'deleteBook'
+      'click .delete': 'deleteBook',
+      'starrr:change': 'updateStarrr'
     },
 
     initialize: function() {
@@ -27,6 +28,11 @@ var app = app || {};
   
     deleteBook: function () {
       this.model.destroy();
+    },
+
+    updateStarrr: function(e, value) {
+      this.model.set('stars', value);
+      this.model.save();
     }
 
   });
