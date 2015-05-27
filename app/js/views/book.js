@@ -26,6 +26,8 @@ var app = app || {};
         alert('new rating is ' + value);
       });
 
+      $(".starrr").starrr()
+
       return this;
     },
 

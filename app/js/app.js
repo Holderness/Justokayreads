@@ -15,7 +15,4 @@ $(function() {
      $('#editBookModal').modal('hide');
   });
 
-  $('.starrr').on('starrr:change', function(e, value){
-    alert('new rating is ' + value);
-  });
 });
