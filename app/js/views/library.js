@@ -3,10 +3,11 @@ var app = app || {};
 (function($) {
 
   app.LibraryView = Backbone.View.extend({
-    el: '#books',
+    el: '#page-content',
 
     events: {
       'click #add': 'addBook',
+      'click #update': 'updateBook'
     },
 
     initialize: function() {
@@ -32,6 +33,12 @@ var app = app || {};
       this.thumbnailView.submit();
     },
 
+
+    updateBook: function() {
+      app.book.trigger('updateBook');
+      // app.booklist.trigger('updateBook');
+    },
+
     filterOne: function(book) {
       book.trigger('visible');
     },
@@ -53,6 +60,7 @@ var app = app || {};
             if ( el.id === 'keywords' ) {
               formData[ el.id ] = [];
               _.each( $( el ).val().split( ' ' ), function( keyword ) {
+                debugger;
                 formData[ el.id ].push({ 'keyword': keyword });
               });
             } else if ( el.id === 'dateCompleted' ) {

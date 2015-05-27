@@ -13,6 +13,8 @@
 </head>
 <body>
 
+
+
   <div class="nav-header menu-wrapper">
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
@@ -47,10 +49,16 @@
     </nav>
   </div>
 
+
+
+
+
   <div id="page-content">
     <div class="row">
       <div class="container center-block">
 
+
+<!-- create book modal -->
         <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="addBookModal" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -93,11 +101,58 @@
           </div>
         </div>
 
+
+<!-- update book modal -->
+        <div class="modal fade" id="editBookModal" tabindex="-1" role="dialog" aria-labelledby="editBookModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="editBookModalLabel">New Book!</h4>
+              </div>
+              <div class="modal-body">
+                <div id="editBooks">
+<!--                   <div id="imageCoverUpload">
+                    <img src="" alt="" id="uploadedImage" class="updateImage">
+                    <form id="uploadCoverForm" method="post" action="/api/cover" enctype="multipart/form-data">
+                      <input type="file" id="coverImageUpload" name="coverImageUpload">
+                    </form>
+                    <div id="status"></div>
+                  </div> -->
+                  <form action="#" method="put" id="updateBook" class="updateBook">
+                    <div>
+                      <input type="hidden" class="update-coverImage"/>
+                      <label for="title">Title: </label>
+                      <input type="text" class="update-title"/>
+                      <label for="author">Author: </label>
+                      <input type="text" class="update-author"/>
+                      <label for="dateCompleted">Completed: </label>
+                      <input type="text" class="update-dateCompleted"/>
+                      <label for="keywords">Keywords: </label>
+                      <input type="text" class="update-keywords"/>
+<!--                       <label for="stars">Rating: </label>
+                      <div class='starrr'></div> -->
+                      <button id="update" class="btn btn-primary hidden">Update</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <label for="update" id="update-btn" class="btn btn-primary">Save & Close</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div id="bookList" class="col-md-12"></div>
 
       </div>
     </div>
   </div>
+
+
+
 
 
   <script id="bookTemplate" type="text/template">
@@ -118,7 +173,10 @@
         <img class="delete" src="img/delete.png">
         <div class="bookInteractionBar">
           <div class="bookUpdated">Last Updated: <%= moment(new Date(created)).fromNow() %></div>
-          <button class="bookComment"><a href="#/booyah">Comment</a></button> 
+          <button class="bookButton"><a href="#/booyah">Comment</a></button> 
+          <button class="bookButton"><a href="#" class="edit"
+                data-toggle="modal"
+                data-target="#editBookModal">Edit</a></button> 
         </div>
       </div>
     </div>

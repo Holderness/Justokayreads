@@ -162,11 +162,15 @@ ul.navbar-nav {
 
 
 /*book comment will be a model to write your notes on the book in*/
-.bookComment {
+.bookButton {
   display: inline-block;
 }
 
 
+
+.update {
+
+}
 
 
 
@@ -219,6 +223,47 @@ ul.navbar-nav {
 }
 
 #addBook div:after {
+  content: "";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+}
+
+
+
+/*update book*/
+
+#updateBook label {
+  width: 100px;
+  margin-right: 10px;
+  text-align: right;
+  line-height: 25px;
+}
+
+#updateBook label, #updateBook input {
+  display: block;
+  margin-bottom: 10px;
+  float: left;
+}
+
+#updateBook label[for='title'], #updateBook label[for='dateCompleted'] {
+  clear: both;
+}
+
+#updateBook button {
+  display: block; margin: 5px 20px 10px 10px;
+  float: right;
+  clear: both;
+}
+
+#updateBook div {
+  width: 550px;
+}
+
+#updateBook div:after {
   content: "";
   display: block;
   height: 0;
