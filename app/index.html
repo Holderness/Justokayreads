@@ -159,7 +159,7 @@
                 <form action="#" id="commentForm">
                   <button id="comment-update" class="btn btn-primary hidden">Update</button>
                 </form>
-                <textarea name="comment" id="commentBox" form="commentForm" placeholder="Critique . . ."></textarea>
+                <textarea name="comment" id="commentInput" form="commentForm" placeholder="Critique . . ."></textarea>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -201,7 +201,7 @@
         <img class="delete" src="img/delete.png">
         <div class="bookInteractionBar">
           <div class="bookUpdated">Last Updated: <%= moment(new Date(created)).fromNow() %></div>
-          <button class="bookButton"><a href="#/booyah"
+          <button class="bookButton"><a href="#" class="comment"
                data-toggle="modal"
                data-target="#commentModal">Comment</a></button> 
           <button class="bookButton"><a href="#" class="edit"

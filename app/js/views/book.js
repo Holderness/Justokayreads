@@ -10,11 +10,13 @@ var app = app || {};
       'click .delete': 'delete',
       'starrr:change': 'updateStarrr',
       'click .edit': 'edit',
+      'click .comment': 'comment'
     },
 
     initialize: function() {
       this.listenTo( this.model, 'destroy', this.remove );
       this.listenTo( this.model, 'updateBook', this.update );
+      this.listenTo( this.model, 'updateComment', this.updateComment );
       this.listenTo( this.model, 'change', this.render );
       this.listenTo( this.model, 'visible', this.toggleVisible );
     },
@@ -59,6 +61,25 @@ var app = app || {};
       var keywordData = this.parseKeywords($('.update-keywords').val());
       this.model.set('keywords', keywordData);
 
+      this.model.save( null, {
+        success: function(response) {
+          console.log('successfuly UPDATED blog with _id: ' + response.toJSON()._id);
+        },
+        error: function() {
+          console.log('Failed to update blog!');
+        }
+      });
+    },
+
+    comment: function() {
+      $('#commentInput').val('');
+      $('#commentInput').val(this.model.attributes.comment);
+      app.book = this.model;
+    },
+
+    updateComment: function() {
+      this.model.set('comment', $('#commentInput').val());
+      debugger;
       this.model.save( null, {
         success: function(response) {
           console.log('successfuly UPDATED blog with _id: ' + response.toJSON()._id);

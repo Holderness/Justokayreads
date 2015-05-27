@@ -19,7 +19,8 @@ var Book = new mongoose.Schema({
 	dateCompleted: Date,
   created: Date,
   stars: Number,
-	keywords: [ Keywords ]
+	keywords: [ Keywords ],
+  comment: String
 });
 
 var app = express();
@@ -60,7 +61,8 @@ router.route('/api/books')
       dateCompleted: req.body.dateCompleted,
       created: req.body.created,
       stars: null,
-      keywords: req.body.keywords
+      keywords: req.body.keywords,
+      comment: ''
     });
     book.save( function( err ) {
       if (!err) {
@@ -90,6 +92,7 @@ router.route('/api/books/:id')
       book.dateCompleted = req.body.dateCompleted;
       book.stars = req.body.stars;
       book.keywords = req.body.keywords;
+      book.comment = req.body.comment;
       return book.save( function( err ) {
         if (!err) {
           console.log( 'book updated' );

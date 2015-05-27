@@ -8,8 +8,9 @@ var app = app || {};
     events: {
       'click #add': 'addBook',
       'click #update': 'updateBook',
-      'click #update-btn': 'updateClose',
-      'click #comment-update-btn': 'commentClose'
+      'click #update-btn': 'updateBookClose',
+      'click #comment-update': 'updateComment',
+      'click #comment-update-btn': 'updateCommentClose'
     },
 
     initialize: function() {
@@ -41,11 +42,18 @@ var app = app || {};
       // app.booklist.trigger('updateBook');
     },
 
-    updateClose: function() {
+    updateBookClose: function() {
       $('#editBookModal').modal('hide');
     },
 
-    commentClose: function() {
+    updateComment: function() {
+      debugger;
+      // app.book.trigger('updateComment');
+    },
+
+    updateCommentClose: function() {
+      debugger;
+      app.book.trigger('updateComment');
       $('#commentModal').modal('hide');
     },
 
