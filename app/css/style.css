@@ -112,7 +112,12 @@ ul.navbar-nav {
   height: 96px;
   white-space: nowrap;
   max-width: 244px;
-  overflow: scroll;
+  overflow-x: hidden;
+  line-height: 14px;
+}
+
+.bookItemListContainer ul {
+  overflow-x: auto;
 }
 
 .bookImageContainer {
@@ -253,6 +258,12 @@ ul.navbar-nav {
 @media (min-width: 990px) {
   .bookItemListContainer {
     max-width: 244px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bookItemListContainer {
+    max-width: 344px;
   }
 }
 
