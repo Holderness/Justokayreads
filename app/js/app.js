@@ -15,4 +15,6 @@ $(function() {
      $('#editBookModal').modal('hide');
   });
 
+  autosize($('textarea#commentBox'));
+
 });

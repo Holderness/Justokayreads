@@ -59,7 +59,6 @@ var app = app || {};
             if ( el.id === 'keywords' ) {
               formData[ el.id ] = [];
               _.each( $( el ).val().split( ' ' ), function( keyword ) {
-                debugger;
                 formData[ el.id ].push({ 'keyword': keyword });
               });
             } else if ( el.id === 'dateCompleted' ) {

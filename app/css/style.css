@@ -168,10 +168,16 @@ ul.navbar-nav {
 
 
 
-.update {
+/*comment*/
 
+#commentBox {
+  outline: none;
+  width: 545px;
+  margin: 10px;
+  border: none;
+  resize: vertical;
+  max-height: 500px;
 }
-
 
 
 
