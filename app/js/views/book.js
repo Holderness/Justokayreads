@@ -72,14 +72,13 @@ var app = app || {};
     },
 
     comment: function() {
-      $('#commentInput').val('');
       $('#commentInput').val(this.model.attributes.comment);
       app.book = this.model;
     },
 
     updateComment: function() {
       this.model.set('comment', $('#commentInput').val());
-      debugger;
+
       this.model.save( null, {
         success: function(response) {
           console.log('successfuly UPDATED blog with _id: ' + response.toJSON()._id);
