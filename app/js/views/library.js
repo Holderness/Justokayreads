@@ -33,7 +33,6 @@ var app = app || {};
       this.thumbnailView.submit();
     },
 
-
     updateBook: function() {
       app.book.trigger('updateBook');
       // app.booklist.trigger('updateBook');

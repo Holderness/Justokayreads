@@ -166,7 +166,7 @@
             <li><%= title %></li>
             <li>by <%= author %></li>
             <li>Completed: <%= $.format.date( new Date( dateCompleted ), 'MMMM yyyy' ) %></li>
-		        <li>Keywords: &nbsp; <% _.each( keywords, function( keyobj ) { %><%= keyobj.keyword %><% } ); %></li>
+		        <li>Keywords: &nbsp; <% _.each( keywords, function( keyobj ) { %><%= keyobj.keyword %> <% } ); %></li>
             <li>Rating:&nbsp;&nbsp;<div class='starrr' data-rating="<%= stars %>"></div></li>
 	        </ul>
         </div>

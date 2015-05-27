@@ -22,11 +22,7 @@ var app = app || {};
     render: function() {
       this.$el.html( this.template( this.model.toJSON() ));
 
-      this.$('.starrr').on('starrr:change', function(e, value){
-        alert('new rating is ' + value);
-      });
-
-      $(".starrr").starrr()
+      $(".starrr").starrr();
 
       return this;
     },
@@ -37,7 +33,13 @@ var app = app || {};
       $('.update-title').val(attrs.title);
       $('.update-author').val(attrs.author);
       $('.update-dateCompleted').val(attrs.dateCompleted);
-      $('.update-keywords').val(attrs.keywords[0].keyword);
+      var keywords = [];
+      _.each( attrs.keywords, function(keyword) {
+        if (!_.isEmpty(keyword.keyword)) {
+          keywords.push(keyword.keyword);
+        }
+      });
+      $('.update-keywords').val(keywords.join(' '));
       app.book = this.model;
     },
 

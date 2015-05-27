@@ -15,6 +15,7 @@ var app = app || {};
       this.collection.each(function (item) {
         this.renderBook(item);
       }, this);
+      $(".starrr").starrr();
     },
 
     renderBook: function(item) {
@@ -22,7 +23,6 @@ var app = app || {};
         model: item
       });
       $('#bookList').append(bookView.render().el);
-      $(".starrr").starrr();
     }
 
   });
