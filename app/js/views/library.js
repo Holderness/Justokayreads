@@ -7,7 +7,9 @@ var app = app || {};
 
     events: {
       'click #add': 'addBook',
-      'click #update': 'updateBook'
+      'click #update': 'updateBook',
+      'click #update-btn': 'updateClose',
+      'click #comment-update-btn': 'commentClose'
     },
 
     initialize: function() {
@@ -31,11 +33,20 @@ var app = app || {};
     addBook: function(e) {
       e.preventDefault();
       this.thumbnailView.submit();
+      $('#addBookModal').modal('hide');
     },
 
     updateBook: function() {
       app.book.trigger('updateBook');
       // app.booklist.trigger('updateBook');
+    },
+
+    updateClose: function() {
+      $('#editBookModal').modal('hide');
+    },
+
+    commentClose: function() {
+      $('#commentModal').modal('hide');
     },
 
     filterOne: function(book) {

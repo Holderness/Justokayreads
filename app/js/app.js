@@ -7,13 +7,13 @@ $(function() {
 	appView.start();
 
 
-  $('#add').on('click', function() {
-    $('#addBookModal').modal('hide');
-  });
+  // $('#add').on('click', function() {
+  //   $('#addBookModal').modal('hide');
+  // });
 
-  $('#update-btn').on('click', function() {
-     $('#editBookModal').modal('hide');
-  });
+  // $('#update-btn').on('click', function() {
+  //    $('#editBookModal').modal('hide');
+  // });
 
   autosize($('textarea#commentBox'));
 
