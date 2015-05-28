@@ -16,7 +16,7 @@ var app = app || {};
       this.bookListView = new app.BookListView( { collection: app.booklist } );
 
       this.listenTo(this.thumbnailView, 'image-uploaded', this.updateInput);
-      this.listenTo(app.booklist, 'filter', this.filterAll);
+      this.listenTo(app.booklist, 'filter', this.filter);
     },
 
     render: function() {
@@ -45,12 +45,8 @@ var app = app || {};
       $('#commentModal').modal('hide');
     },
 
-    filterOne: function(book) {
-      book.trigger('visible');
-    },
-
-    filterAll: function() {
-       app.booklist.each(this.filterOne, this);
+    filter: function() {
+       app.booklist.sortByField(app.BookFilter);
     },
 
     updateInput: function(path) {
