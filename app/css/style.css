@@ -92,19 +92,17 @@ ul.navbar-nav {
 
 .sort-by button {
   background-color: #C15030;
-  color: #fff;
+  color: #fff !important;
   border-bottom: 2px solid #8C2C11;
-}
-
-.sort-by button:hover {
-  color: #fff;
+  outline: none !important;
 }
 
 .sort-by ul {
   cursor: pointer;
 }
 
-.sort-by li:hover {
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+  background-image: none;
   background-color: #FABAA7;
 }
 
