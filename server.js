@@ -17,7 +17,7 @@ app.use( multer({ dest: './app/img/uploads/' }) );
   //routes
 
 var books = require('./app/routes/books');
-app.use( '/', books );
+app.use( '/api', books );
 
 app.use( express.static( path.join( application_root, 'app') ) );
 

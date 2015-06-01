@@ -8,17 +8,6 @@ var express = require('express'),
 mongoose.connect( 'mongodb://localhost/library_database' );
 
 //Schemas
-var User = new mongoose.Schema({
-  username: {
-    type: String,
-    unique: true,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  }
-});
 
 var Keywords = new mongoose.Schema({
   keyword: String
@@ -35,6 +24,39 @@ var Book = new mongoose.Schema({
   comment: String
 });
 
+var User = new mongoose.Schema({
+  username: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+});
+
+//executes before each user.save() call
+User.pre('save', function(callback) {
+  var user = this;
+
+  // Break out if the password hasn't changed
+  if (!user.isModified('password')) return callback();
+  
+  // Password changed so we need to hash it
+  bcrypt.genSalt(5, function(err, salt) {
+    if (err) return callback(err);
+
+    bcrypt.hash(user.password, salt, null, function(err, hash) {
+      if (err) return callback(err);
+      user.password = hash;
+      callback();
+    });
+  });
+});
+
+
+
 var app = express();
 app.use(bodyParser.json());
 
@@ -45,17 +67,17 @@ var BookModel = mongoose.model( 'Book', Book );
 
 router = express.Router();
 
-router.route('/api')
+router.route('/')
   .get(function(req, res){
     res.send( 'Library API is running' );
   });
 
-router.route('/api/cover')
+router.route('/cover')
   .post(function(req, res) {
     return res.send({ path: "/img/uploads/" + req.files.coverImageUpload.name });
   });
 
-router.route('/api/books')
+router.route('/books')
   .get(function(req, res) {
     return BookModel.find( function( err, books ) {
        if (!err) {
@@ -86,7 +108,7 @@ router.route('/api/books')
     return res.send( book );
   });
 
-router.route('/api/books/:id')
+router.route('/books/:id')
   .get(function(req, res) {
     return BookModel.findById( req.params.id, function( err, book ) {
       if (!err) {
