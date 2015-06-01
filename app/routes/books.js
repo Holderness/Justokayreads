@@ -8,6 +8,18 @@ var express = require('express'),
 mongoose.connect( 'mongodb://localhost/library_database' );
 
 //Schemas
+var User = new mongoose.Schema({
+  username: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+});
+
 var Keywords = new mongoose.Schema({
   keyword: String
 });
