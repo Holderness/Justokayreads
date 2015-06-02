@@ -8,7 +8,7 @@ var app = app || {};
     events: {
       'click #add': 'addBook',
       'click #update': 'updateBook',
-      'click #comment-update-btn': 'updateComment'
+      'click #comment-update-btn': 'updateComment',
     },
 
     initialize: function() {
@@ -74,7 +74,7 @@ var app = app || {};
         });
         app.booklist.create( formData );
         $('#uploadedImage').val('');
-      }
+    }
 
   });
 

@@ -12,5 +12,12 @@ $(function() {
 
   autosize($('textarea#commentInput'));
 
+  // $('#logout').on('click', function() {
+  //     $.ajax({
+  //       url: "/logout",
+  //     }).done(function() {
+  //       alert('wut');
+  //     });
+  // });
 
 });

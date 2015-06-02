@@ -5,10 +5,15 @@ var application_root = __dirname,
     bodyParser = require('body-parser'),
     errorHandler = require('errorhandler'),
     multer = require('multer'),
-    bcrypt = require('bcrypt-nodejs');
+    bcrypt = require('bcrypt-nodejs'),
+    passport = require('passport');
+
 
 var app = express();
 
+
+app.use(passport.initialize());
+// app.use(passport.session());
 
 	// parses request body and populates request.body
 app.use( bodyParser.urlencoded({ extended: true }) );
@@ -21,6 +26,12 @@ var books = require('./app/routes/books');
 app.use( '/api', books );
 
 app.use( express.static( path.join( application_root, 'app') ) );
+
+// app.get('/logout', function(req, res){
+//   debugger;
+//   req.logout();
+//   res.redirect('/');
+// });
 
 
   // show all errors in development

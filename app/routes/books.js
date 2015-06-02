@@ -2,11 +2,14 @@
 var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
-    bcrypt = require('bcrypt-nodejs');
+    bcrypt = require('bcrypt-nodejs'),
+    passport = require('passport'),
+    BasicStrategy = require('passport-http').BasicStrategy;
 
 
 //Connect to db
 mongoose.connect( 'mongodb://localhost/library_database' );
+
 
 //Schemas
 
@@ -22,7 +25,8 @@ var Book = new mongoose.Schema({
   created: Date,
   stars: Number,
 	keywords: [ Keywords ],
-  comment: String
+  comment: String,
+  userId: String
 });
 
 var User = new mongoose.Schema({
@@ -37,6 +41,7 @@ var User = new mongoose.Schema({
   }
 });
 
+// schema pre
 //executes before each user.save() call
 User.pre('save', function(callback) {
   var user = this;
@@ -56,34 +61,69 @@ User.pre('save', function(callback) {
   });
 });
 
+// Schema Methods
+User.methods.verifyPassword = function(password, cb) {
+  bcrypt.compare(password, this.password, function(err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
+  });
+};
 
 
 var app = express();
 app.use(bodyParser.json());
 
 
-
 //Models
 var BookModel = mongoose.model( 'Book', Book );
 var UserModel = mongoose.model( 'User', User );
+
+
+
+// Passport
+
+passport.use( new BasicStrategy(
+  function(username, password, callback) {
+    UserModel.findOne({ username: username }, function (err,user) {
+      if (err) {return callback(err); }
+      if (!user) { return callback(null, false); }
+      user.verifyPassword(password, function(err, isMatch) {
+        if (err) {return callback(err); }
+        if (!isMatch) { return callback(null, false); }
+        return callback(null, user);
+      });
+    });
+  }
+));
+
+
+var isAuthenticated = passport.authenticate('basic', {session : false });
+
+
 
 // Routers
 
 router = express.Router();
 
 router.route('/')
-  .get(function(req, res){
+  .get(isAuthenticated, function(req, res){
     res.send( 'Library API is running' );
   });
 
+router.route('/logout')
+  .get(isAuthenticated, function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
+
 router.route('/cover')
-  .post(function(req, res) {
+  .post(isAuthenticated, function(req, res) {
     return res.send({ path: "/img/uploads/" + req.files.coverImageUpload.name });
   });
 
 router.route('/books')
-  .get(function(req, res) {
-    return BookModel.find( function( err, books ) {
+  .get(isAuthenticated, function(req, res) {
+    return BookModel.find( { userId: req.user._id }, function( err, books ) {
        if (!err) {
          return res.send( books );
        } else {
@@ -91,7 +131,7 @@ router.route('/books')
        }
     });
   })
-  .post(function(req, res) {
+  .post(isAuthenticated, function(req, res) {
     var book = new BookModel({
       coverImage: req.body.coverImage,
       title: req.body.title,
@@ -100,7 +140,8 @@ router.route('/books')
       created: req.body.created,
       stars: null,
       keywords: req.body.keywords,
-      comment: ''
+      comment: '',
+      userId: req.user._id
     });
     book.save( function( err ) {
       if (!err) {
@@ -113,8 +154,8 @@ router.route('/books')
   });
 
 router.route('/books/:id')
-  .get(function(req, res) {
-    return BookModel.findById( req.params.id, function( err, book ) {
+  .get(isAuthenticated, function(req, res) {
+    return BookModel.find( { userId: req.user._id, _id: req.params.id }, function( err, book ) {
       if (!err) {
         return res.send( book );
       } else {
@@ -122,7 +163,7 @@ router.route('/books/:id')
       }
     });
   })
-  .put(function(req, res) {
+  .put(isAuthenticated, function(req, res) {
     console.log('Updating book ' + req.body.title );
     return BookModel.findById( req.params.id, function( err, book ) {
       book.title = req.body.title;
@@ -141,7 +182,7 @@ router.route('/books/:id')
       });
     });
   })
-  .delete(function(req, res) {
+  .delete(isAuthenticated, function(req, res) {
     console.log( 'Deleting book with id: ' + req.params.id );
     return BookModel.findById( req.params.id, function( err, book ) {
       return book.remove( function( err ) {
