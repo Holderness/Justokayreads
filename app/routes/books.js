@@ -1,7 +1,8 @@
 
 var express = require('express'),
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    bcrypt = require('bcrypt-nodejs');
 
 
 //Connect to db
@@ -64,6 +65,9 @@ app.use(bodyParser.json());
 
 //Models
 var BookModel = mongoose.model( 'Book', Book );
+var UserModel = mongoose.model( 'User', User );
+
+// Routers
 
 router = express.Router();
 
@@ -150,6 +154,27 @@ router.route('/books/:id')
     });
   });
 
+
+router.route('/users')
+  .get(function(req, res) {
+    return UserModel.find(function(err, users) {
+      if (err) res.send(err);
+      return res.send(users);
+    });
+  })
+  .post(function(req, res) {
+    console.log('Creating user ' + req.body.username);
+    var user = new UserModel({
+      username: req.body.username,
+      password: req.body.password
+    });
+
+    user.save(function(err) {
+      if (err) res.send(err);
+      return res.send({message: 'New User: ' + req.body.username});
+
+    });
+  });
 
 
 

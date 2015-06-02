@@ -4,7 +4,8 @@ var application_root = __dirname,
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     errorHandler = require('errorhandler'),
-    multer = require('multer');
+    multer = require('multer'),
+    bcrypt = require('bcrypt-nodejs');
 
 var app = express();
 
