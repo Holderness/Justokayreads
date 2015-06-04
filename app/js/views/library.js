@@ -5,6 +5,8 @@ var app = app || {};
   app.LibraryView = Backbone.View.extend({
     el: '#page-content',
 
+    template: _.template($('#libraryTemplate').html()),
+
     events: {
       'click #add': 'addBook',
       'click #update': 'updateBook',
@@ -20,6 +22,7 @@ var app = app || {};
     },
 
     render: function() {
+      this.$el.html(this.template());
       this.thumbnailView.setElement(this.$('#imageCoverUpload')).render();
       this.bookListView.setElement(this.$('#bookList'));
     },
@@ -38,6 +41,7 @@ var app = app || {};
     updateBook: function() {
       app.book.trigger('updateBook');
       $('#editBookModal').modal('hide');
+      app.LibraryRouter.navigate('library');
     },
 
     updateComment: function() {

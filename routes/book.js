@@ -110,9 +110,8 @@ router.route('/')
     res.send( 'Library API is running' );
   });
 
-router.route('/logout')
+router.route('/login')
   .get(isAuthenticated, function(req, res){
-    req.logout();
     res.redirect('/');
   });
 
@@ -213,7 +212,6 @@ router.route('/users')
     user.save(function(err) {
       if (err) res.send(err);
       return res.send({message: 'New User: ' + req.body.username});
-
     });
   });
 
@@ -221,5 +219,6 @@ router.route('/users')
 
 
 
-
 module.exports = router;
+
+

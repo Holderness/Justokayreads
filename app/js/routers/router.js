@@ -5,7 +5,21 @@ var app = app || {};
   var LibraryRouter = Backbone.Router.extend({
     
     routes: {
+      'signUp': 'login',
+      '': 'library',
       '*filter': 'setFilter'
+    },
+
+    login: function() {
+      this.loginView = new app.LoginView({model: app.LoginModel});
+      this.loginView.render();
+    },
+
+    library: function() {
+      var appView = new app.LibraryView();
+      appView.start();
+      $("#dateCompleted").datepicker();
+      $('.update-dateCompleted').datepicker();
     },
 
     setFilter: function(param) {
