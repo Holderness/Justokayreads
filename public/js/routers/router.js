@@ -5,8 +5,9 @@ var app = app || {};
   var LibraryRouter = Backbone.Router.extend({
     
     routes: {
-      'signUp': 'login',
       '': 'library',
+      'signUp': 'login',
+      'library': 'library',
       '*filter': 'setFilter'
     },
 

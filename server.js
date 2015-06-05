@@ -1,5 +1,4 @@
-var application_root = __dirname,
-    express = require('express'),
+var express = require('express'),
     path = require('path'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
@@ -18,14 +17,14 @@ app.use(passport.initialize());
 	// parses request body and populates request.body
 app.use( bodyParser.urlencoded({ extended: true }) );
 app.use( bodyParser.json() );
-app.use( multer({ dest: './app/img/uploads/' }) );
+app.use( multer({ dest: './public/img/uploads/' }) );
 
   //routes
 
-var books = require('./routes/book');
+var books = require('./app/routes/book');
 app.use( '/api', books );
 
-app.use( express.static( path.join( application_root, 'app') ) );
+app.use( express.static( path.join( __dirname, 'public') ) );
 
 // app.get('/logout', function(req, res){
 //   debugger;
