@@ -68,6 +68,8 @@ var app = app || {};
           console.log('Failed to update blog!');
         }
       });
+
+      $('#editBookModal').modal('hide');
     },
 
     comment: function() {

@@ -107,6 +107,7 @@ router = express.Router();
 
 router.route('/')
   .get(authController.isAuthenticated, function(req, res){
+    console.log(req);
     res.send( 'Library API is running' );
   });
 

@@ -28,21 +28,10 @@
             <span class="fa fa-bars"></span>
           </button>
         </div>
-<!--         <div id="navbar" class="navbar-collapse collapse in" aria-expanded="false">
-          <ul class="nav navbar-nav">
-            <li>Woop</li>
-          </ul>
-        </div> -->
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="true">
-<!--           <ul class="nav navbar-nav navbar-left">
-            <li></li>
-          </ul> -->
           <ul class="nav navbar-nav navbar-right">
             <li>
-               <a href="#" class="add-book-btn"
-                id="addBook"
-                data-toggle="modal"
-                data-target="#addBookModal">Add Book</a>
+               <a href="#library" class="add-book-btn">Library</a>
             </li>
             <li>
                <a href="#signUp" class="add-book-btn">Sign Up</a>
@@ -76,17 +65,25 @@
 
 <!-- sort by  -->
         <div class="sort-by-container">
-          <div class="sort-by btn-group">
-            <button class="btn btn-small">Sort By</button>
-            <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#/title">Title</a></li>
-              <li><a href="#/author">Author</a></li>
-              <li><a href="#/dateCompleted">Date Completed</a></li>
+            <ul class="list-unstyled">
+              <li class="sort-by btn-group">
+                <button class="btn btn-small">Sort By</button>
+                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#/title">Title</a></li>
+                  <li><a href="#/author">Author</a></li>
+                  <li><a href="#/dateCompleted">Date Completed</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="sort-by"
+                    id="addBook"
+                    data-toggle="modal"
+                    data-target="#addBookModal"><button class="btn btn-small">Add Book</button></a>
+              </li>
             </ul>
-          </div>
         </div>
 
 <!-- create book modal -->

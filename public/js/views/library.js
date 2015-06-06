@@ -40,8 +40,6 @@ var app = app || {};
 
     updateBook: function() {
       app.book.trigger('updateBook');
-      $('#editBookModal').modal('hide');
-      app.LibraryRouter.navigate('library');
     },
 
     updateComment: function() {

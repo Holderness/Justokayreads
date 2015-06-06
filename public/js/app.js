@@ -9,7 +9,6 @@ $(function() {
   autosize($('textarea#commentInput'));
 
   $('#logout').on('click', function() {
-    debugger;
       $.ajax({
         url: "/api/logout",
       }).done(function() {
@@ -18,7 +17,7 @@ $(function() {
   });
 
   $('#addBook').on('click', function() {
-    app.LibraryRouter.navigate('library');
+    app.LibraryRouter.navigate('library', {trigger: true});
   });
 
 });
