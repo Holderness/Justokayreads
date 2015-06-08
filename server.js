@@ -1,36 +1,14 @@
-var express = require('express'),
-    path = require('path'),
-    mongoose = require('mongoose'),
-    bodyParser = require('body-parser'),
-    errorHandler = require('errorhandler'),
-    multer = require('multer'),
-    bcrypt = require('bcrypt-nodejs'),
-    passport = require('passport');
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+var config = require('./config/config'),
+    mongoose = require('./config/mongoose'),
+    express = require('./config/express'),
+    passport = require('./config/passport'),
+    errorHandler = require('errorhandler');
 
-var app = express();
-
-
-app.use(passport.initialize());
-// app.use(passport.session());
-
-	// parses request body and populates request.body
-app.use( bodyParser.urlencoded({ extended: true }) );
-app.use( bodyParser.json() );
-app.use( multer({ dest: './public/img/uploads/' }) );
-
-  //routes
-
-var books = require('./app/routes/book');
-app.use( '/api', books );
-
-app.use( express.static( path.join( __dirname, 'public') ) );
-
-// app.get('/logout', function(req, res){
-//   debugger;
-//   req.logout();
-//   res.redirect('/');
-// });
+var db = mongoose(),
+    app = express(),
+    passport = passport();
 
 
   // show all errors in development
@@ -38,9 +16,9 @@ if (app.settings.env === 'development') {
   app.use( errorHandler({ dumpExceptions: true, showStack: true }) );
 }
 
-
-var port = 1313;
-app.listen( port, function() {
+app.listen( config.port, function() {
 	console.log( 'Express server listening on port %d in %s mode',
-		port, app.settings.env );
+		config.port, app.settings.env );
 });
+
+module.exports = app;

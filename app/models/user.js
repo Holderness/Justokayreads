@@ -3,8 +3,11 @@ var mongoose = require('mongoose'),
 
 
 var UserSchema = new mongoose.Schema({
+  name: String,
+  email: String,
   username: {
     type: String,
+    trim: true,
     unique: true,
     required: true
   },
@@ -12,6 +15,9 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  provider: String,
+  providerId: String,
+  providerData: {},
   books: []
 });
 
@@ -37,11 +43,33 @@ UserSchema.pre('save', function(callback) {
 });
 
 // Schema Methods
-UserSchema.methods.verifyPassword = function(password, cb) {
+UserSchema.methods.authenticate = function(password, cb) {
   bcrypt.compare(password, this.password, function(err, isMatch) {
     if (err) return cb(err);
     cb(null, isMatch);
   });
+};
+
+UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
+  var _this = this;
+  var possibleUsername = username + (suffix || '');
+
+  _this.findOne(
+    {username: possibleUsername},
+    function(err, user) {
+      if (!err) {
+        if (!user) {
+          callback(possibleUsername);
+        }
+        else {
+          return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
+        }
+      }
+      else {
+        callback(null);
+      }
+    }
+  );
 };
 
 

@@ -1,33 +1,34 @@
 
 var express = require('express'),
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser'),
-    bcrypt = require('bcrypt-nodejs'),
-    passport = require('passport');
+    passport = require('passport'),
+    bodyParser = require('body-parser');
 
-var authController = require('../controllers/auth');
+var users = require('../controllers/user');
+
+// var authController = require('../controllers/auth');
 
 //Connect to db
-mongoose.connect( 'mongodb://localhost/library_database' );
+// mongoose.connect( 'mongodb://localhost/library_database' );
 
 
 //Schemas
 
-var Keywords = new mongoose.Schema({
-  keyword: String
-});
+// var Keywords = new mongoose.Schema({
+//   keyword: String
+// });
 
-var Book = new mongoose.Schema({
-  coverImage: String,
-  title: String,
-  author: String,
-  dateCompleted: Date,
-  created: Date,
-  stars: Number,
-  keywords: [ Keywords ],
-  comment: String,
-  userId: String
-});
+// var Book = new mongoose.Schema({
+//   coverImage: String,
+//   title: String,
+//   author: String,
+//   dateCompleted: Date,
+//   created: Date,
+//   stars: Number,
+//   keywords: [ Keywords ],
+//   comment: String,
+//   userId: String
+// });
 
 // var User = new mongoose.Schema({
 //   username: {
@@ -70,13 +71,13 @@ var Book = new mongoose.Schema({
 // };
 
 
-var app = express();
-app.use(bodyParser.json());
 
 
 //Models
-var BookModel = mongoose.model( 'Book', Book );
+var BookModel = require('mongoose').model('Book');
 var UserModel = require('mongoose').model('User');
+
+console.log(BookModel);
 
 
 
@@ -106,23 +107,26 @@ var UserModel = require('mongoose').model('User');
 router = express.Router();
 
 router.route('/')
-  .get(authController.isAuthenticated, function(req, res){
+  .get(function(req, res){
     console.log(req);
+    console.log(res);
     res.send( 'Library API is running' );
   });
 
 router.route('/logout')
-  .get(authController.isAuthenticated, function(req, res){
+  .get(function(req, res){
     res.redirect('/');
   });
 
 router.route('/cover')
-  .post(authController.isAuthenticated, function(req, res) {
+  .post(function(req, res) {
     return res.send({ path: "/img/uploads/" + req.files.coverImageUpload.name });
   });
 
 router.route('/books')
-  .get(authController.isAuthenticated, function(req, res) {
+  .get(function(req, res) {
+        console.log(req);
+    console.log(res);
     console.log(req.user._id);
     return BookModel.find( { userId: req.user._id }, function( err, books ) {
        if (!err) {
@@ -132,7 +136,7 @@ router.route('/books')
        }
     });
   })
-  .post(authController.isAuthenticated, function(req, res) {
+  .post(function(req, res) {
     var book = new BookModel({
       coverImage: req.body.coverImage,
       title: req.body.title,
@@ -155,7 +159,7 @@ router.route('/books')
   });
 
 router.route('/books/:id')
-  .get(authController.isAuthenticated, function(req, res) {
+  .get(function(req, res) {
     return BookModel.find( { userId: req.user._id, _id: req.params.id }, function( err, book ) {
       if (!err) {
         return res.send( book );
@@ -164,7 +168,7 @@ router.route('/books/:id')
       }
     });
   })
-  .put(authController.isAuthenticated, function(req, res) {
+  .put(function(req, res) {
     console.log('Updating book ' + req.body.title );
     return BookModel.findById( req.params.id, function( err, book ) {
       book.title = req.body.title;
@@ -183,7 +187,7 @@ router.route('/books/:id')
       });
     });
   })
-  .delete(authController.isAuthenticated, function(req, res) {
+  .delete(function(req, res) {
     console.log( 'Deleting book with id: ' + req.params.id );
     return BookModel.findById( req.params.id, function( err, book ) {
       return book.remove( function( err ) {
@@ -197,31 +201,39 @@ router.route('/books/:id')
   });
 
 
-router.route('/users')
-  .get(function(req, res) {
-    return UserModel.find(function(err, users) {
-      if (err) res.send(err);
-      return res.send(users);
-    });
-  })
-  .post(function(req, res) {
-    console.log('Creating user ' + req.body.username);
-    var user = new UserModel({
-      username: req.body.username,
-      password: req.body.password
-    });
+// router.route('/users')
+//   .get(function(req, res) {
+//     return UserModel.find(function(err, users) {
+//       if (err) res.send(err);
+//       return res.send(users);
+//     });
+//   })
+//   .post(function(req, res) {
+//     console.log('Creating user ' + req.body.username);
+//     var user = new UserModel({
+//       username: req.body.username,
+//       password: req.body.password
+//     });
 
-    user.save(function(err) {
-      if (err) res.send(err);
-      return res.send({message: 'New User: ' + req.body.username});
-    });
+//     user.save(function(err) {
+//       if (err) res.send(err);
+//       return res.send({message: 'New User: ' + req.body.username});
+//     });
 
-    console.log('usrrr', req.user);
-  });
+//     console.log('usrrr', req.user);
+//   });
+
+// router.route('/users/:userId').get(users.read);
+
+// router.param('userId', users.userByID);
 
 
+// router.route('/login')
 
-
+//     .post(passport.authenticate('local', {
+//       successRedirect: '/',
+//       failureRedirect: '/'
+//     }));
 
 module.exports = router;
 
