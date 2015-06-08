@@ -5,16 +5,14 @@ var app = app || {};
   var LibraryRouter = Backbone.Router.extend({
     
     routes: {
-      'login': 'login',
-      'signUp': 'login',
-      'library': 'library',
-      'library/*filter': 'setFilter'
+      '': 'library',
+      '*filter': 'mult'
     },
 
-    login: function() {
-      this.loginView = new app.LoginView({model: app.LoginModel});
-      this.loginView.render();
-    },
+    // login: function() {
+    //   this.loginView = new app.LoginView({model: app.LoginModel});
+    //   this.loginView.render();
+    // },
 
     library: function() {
       var appView = new app.LibraryView();
@@ -23,13 +21,17 @@ var app = app || {};
       $('.update-dateCompleted').datepicker();
     },
 
+    mult: function(param) {
+      this.library();
+      this.setFilter(param);
+    },
+
     setFilter: function(param) {
       app.BookFilter = param || '';
 
       app.booklist.trigger('filter');
     }
   });
-
 
   app.LibraryRouter = new LibraryRouter();
   Backbone.history.start();

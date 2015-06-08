@@ -9,17 +9,19 @@ module.exports = function() {
       function(err, user) {
         if (err) { return done(err); }
         if (!user) { return done(null, false, {message: 'Unknown User'}); }
-        if (!user.authenticate(password, function(err, isMatch) {
-        if (err) { return done(err); }
+        // if (!user.authenticate(password)) { return done(null, false, {message: 'Invalid Password'}); }
+        // return done(null, user);
+        user.authenticate(password, function(err, isMatch) {
+          if (err) { return done(err); }
 
-        // Password did not match
-        if (!isMatch) { return done(null, false); }
+          // Password did not match
+          if (!isMatch) { return done(null, false, {message: 'Invalid Password'}); }
 
-        // Success
-        return done(null, user);
-      })) { return done(null, false, {message: 'Invalid Password'}); }
-        return done(null, user);
+          // Success
+          return done(null, user);
+        });
       }
     );
   }));
 };
+

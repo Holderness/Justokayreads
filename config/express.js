@@ -1,5 +1,6 @@
 var config = require('./config'),
     express = require('express'),
+    ejs = require('ejs'),
     path = require('path'),
     bodyParser = require('body-parser'),
     multer = require('multer'),
@@ -11,6 +12,8 @@ var config = require('./config'),
 module.exports = function() {
 
   var app = express();
+
+  ejs.delimiter = '$';
 
   // parses request body and populates request.body
   app.use( bodyParser.urlencoded({ extended: true }) );
@@ -40,7 +43,7 @@ module.exports = function() {
   var books = require('../app/routes/book');
   app.use( '/api', books );
 
-  app.use( express.static( path.join( __dirname, '/public') ) );
+  app.use(express.static( path.join( __dirname, '../public') ) );
 
   return app;
 

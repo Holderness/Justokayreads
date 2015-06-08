@@ -125,8 +125,7 @@ router.route('/cover')
 
 router.route('/books')
   .get(function(req, res) {
-        console.log(req);
-    console.log(res);
+    console.log('reqqqqqqqqqqqqq', req);
     console.log(req.user._id);
     return BookModel.find( { userId: req.user._id }, function( err, books ) {
        if (!err) {

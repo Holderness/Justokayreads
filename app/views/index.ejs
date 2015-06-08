@@ -46,21 +46,18 @@
   </div>
 
 
-    <% if ( user ) { %>
-    <h2>Hello <%=user%> </h2>
-    <a href="/logout">Logout</a>
-  <% } else { %>
-    <a href="/register">Register</a>
-    <a href="/login">Login</a>
-  <% } %>
+  <$ if ( user ) { $>
+    <h2>Hello <$= user $> </h2>
+    <a href="/logout" class="add-book-btn">Logout</a>
+  <$ } else { $>
+    <a href="/register" class="add-book-btn">Register</a>
+    <a href="/login" class="add-book-btn">Login</a>
+  <$ } $>
 
 
 
 
-  <div id="page-content">
-
- Login
-  </div>
+  <div id="page-content"></div>
 
 
 
@@ -216,8 +213,7 @@
 
   </script>
 
-
-  <script id="bookTemplate" type="text/template">
+ <script id="bookTemplate" type="text/template">
     <div class="col-md-6 bookWrap">
       <div class="bookContainer col-xs-12 col-sm-12 col-md-12">
         <div class="bookImageContainer">
@@ -245,7 +241,6 @@
       </div>
     </div>
   </script>
-
 
   <script id="loginTemplate" type="text/template">
     <div class="row">
@@ -291,7 +286,7 @@
   <script src="js/lib/jquery-ui.js"></script>
   <script src="js/lib/jquery-dateFormat.min.js"></script>
   <script src="js/lib/jquery.form.min.js"></script>
-  <script src="/js/lib/autosize.min.js"></script>
+  <script src="js/lib/autosize.min.js"></script>
   <script src="js/lib/starrr.js"></script>
   <script src="js/lib/moment.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
