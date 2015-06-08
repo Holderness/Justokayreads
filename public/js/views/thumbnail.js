@@ -7,7 +7,7 @@ var app = app || {};
   
     events: {
       'change #coverImageUpload': 'renderThumb',
-      'submit #uploadCoverForm': 'upload'
+      'attachImage #uploadCoverForm': 'upload'
     },
 
     render: function() {
@@ -31,7 +31,7 @@ var app = app || {};
 
     submit: function() {
       this.$form = this.$('#uploadCoverForm');
-      this.$form.submit();
+      this.$form.trigger('attachImage');
     },
 
     upload: function() {

@@ -108,27 +108,26 @@ router = express.Router();
 
 router.route('/')
   .get(function(req, res){
-    console.log(req);
-    console.log(res);
     res.send( 'Library API is running' );
   });
 
-router.route('/logout')
-  .get(function(req, res){
-    res.redirect('/');
-  });
+// router.route('/logout')
+//   .get(function(req, res){
+//     res.redirect('/');
+//   });
 
 router.route('/cover')
   .post(function(req, res) {
-    return res.send({ path: "/img/uploads/" + req.files.coverImageUpload.name });
+    console.log('5000000000', req.files);
+    return res.send({ path: "img/uploads/" + req.files.coverImageUpload.name });
   });
 
 router.route('/books')
   .get(function(req, res) {
-    console.log('reqqqqqqqqqqqqq', req);
-    console.log(req.user._id);
+    console.log('reqqqqqqqqq usrrrrrrrrrrr', req.user);
     return BookModel.find( { userId: req.user._id }, function( err, books ) {
        if (!err) {
+        console.log('boooooooooks', books);
          return res.send( books );
        } else {
          return console.log( err );

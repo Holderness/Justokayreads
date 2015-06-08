@@ -30,12 +30,21 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="true">
           <ul class="nav navbar-nav navbar-right">
+          <$ if ( user ) { $>
             <li>
-               <a href="#library" class="add-book-btn">Library</a>
+              <h2>Hello, <$= user $> </h2>
             </li>
             <li>
-               <a href="#signUp" class="add-book-btn">Sign Up</a>
+              <a href="/logout" class="add-book-btn">Logout</a>
             </li>
+          <$ } else { $>
+            <li>
+              <a href="/register" class="add-book-btn">Register</a>
+            </li>
+            <li>
+              <a href="/login" class="add-book-btn">Login</a>
+            </li>
+          <$ } $>
 <!--             <li>
                <a href="#logout" id="logout" class="add-book-btn">logout</a>
             </li> -->
@@ -46,18 +55,12 @@
   </div>
 
 
-  <$ if ( user ) { $>
-    <h2>Hello <$= user $> </h2>
-    <a href="/logout" class="add-book-btn">Logout</a>
-  <$ } else { $>
-    <a href="/register" class="add-book-btn">Register</a>
-    <a href="/login" class="add-book-btn">Login</a>
-  <$ } $>
 
 
 
 
-  <div id="page-content"></div>
+
+  <div id="page-content">sdfgsdfg</div>
 
 
 

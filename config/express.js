@@ -18,7 +18,7 @@ module.exports = function() {
   // parses request body and populates request.body
   app.use( bodyParser.urlencoded({ extended: true }) );
   app.use( bodyParser.json() );
-  app.use( multer({ dest: '../public/img/uploads/' }) );
+  app.use( multer({ dest: __dirname + '../../public/img/uploads/' }) );
 
 
   app.use(session({
