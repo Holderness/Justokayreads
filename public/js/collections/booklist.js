@@ -8,7 +8,7 @@ var app = app || {};
     url: '/api/books',
 
     initialize: function() {
-      this.sortVar = 'title';
+
     },
 
     sort_key: 'id',

@@ -19,12 +19,13 @@ var app = app || {};
 
       this.listenTo(this.thumbnailView, 'image-uploaded', this.updateInput);
       this.listenTo(app.booklist, 'filter', this.filter);
+
     },
 
     render: function() {
       this.$el.html(this.template());
       this.thumbnailView.setElement(this.$('#imageCoverUpload')).render();
-      this.bookListView.setElement(this.$('#bookList'));
+      // this.bookListView.setElement(this.$('#booksss'));
     },
 
     start: function() {
