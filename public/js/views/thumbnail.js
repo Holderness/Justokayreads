@@ -36,15 +36,19 @@ var app = app || {};
 
     upload: function() {
       var _this = this;
-      this.$form.ajaxSubmit({
-        error: function( xhr ) {
-          _this.renderStatus('Error: ' + xhr.status);
-        },
-        success: function( response ) {
-          _this.trigger('image-uploaded', response.path);
-          _this.clearField();
-        }
-      });
+      if (this.$('#coverImageUpload')[0].files.length > 0) {
+        this.$form.ajaxSubmit({
+          error: function( xhr ) {
+            _this.renderStatus('Error: ' + xhr.status);
+          },
+          success: function( response ) {
+            _this.trigger('image-uploaded', response.path);
+            _this.clearField();
+          }
+        });
+      } else {
+       this.trigger('image-uploaded');
+      }
       return false;
     },
 

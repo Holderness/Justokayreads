@@ -118,13 +118,11 @@ router.route('/')
 
 router.route('/cover')
   .post(function(req, res) {
-    console.log('5000000000', req.files);
     return res.send({ path: "img/uploads/" + req.files.coverImageUpload.name });
   });
 
 router.route('/books')
   .get(function(req, res) {
-    console.log('reqqqqqqqqq usrrrrrrrrrrr', req.user);
     return BookModel.find( { userId: req.user._id }, function( err, books ) {
        if (!err) {
         console.log('boooooooooks', books);
@@ -146,6 +144,7 @@ router.route('/books')
       comment: '',
       userId: req.user._id
     });
+    console.log(book);
     book.save( function( err ) {
       if (!err) {
         return console.log ( 'created' );

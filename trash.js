@@ -24,31 +24,4 @@
 
 
   
-  <script id="bookTemplate" type="text/template">
-    <div class="col-md-6 bookWrap">
-      <div class="bookContainer col-xs-12 col-sm-12 col-md-12">
-        <div class="bookImageContainer">
-          <img src="<%= coverImage %>" alt="coverImage"/>
-        </div>
-        <div class="bookItemListContainer">
-          <ul>
-            <li><%= title %></li>
-            <li>by <%= author %></li>
-            <li>Completed: <%= $.format.date( new Date( dateCompleted ), 'MMMM yyyy' ) %></li>
-            <li>Keywords: &nbsp; <% _.each( keywords, function( keyobj ) { %><%= keyobj.keyword %> <% } ); %></li>
-            <li>Rating:&nbsp;&nbsp;<div class='starrr' data-rating="<%= stars %>"></div></li>
-          </ul>
-        </div>
-        <img class="delete" src="img/delete.png">
-        <div class="bookInteractionBar">
-          <div class="bookUpdated">Last Updated: <%= moment(new Date(created)).fromNow() %></div>
-          <button class="bookButton"><a href="#" class="comment"
-               data-toggle="modal"
-               data-target="#commentModal">Comment</a></button> 
-          <button class="bookButton"><a href="#" class="edit"
-                data-toggle="modal"
-                data-target="#editBookModal">Edit</a></button> 
-        </div>
-      </div>
-    </div>
-  </script>
+ 
