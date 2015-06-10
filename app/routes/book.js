@@ -77,7 +77,6 @@ var users = require('../controllers/user');
 var BookModel = require('mongoose').model('Book');
 var UserModel = require('mongoose').model('User');
 
-console.log(BookModel);
 
 
 
@@ -125,7 +124,6 @@ router.route('/books')
   .get(function(req, res) {
     return BookModel.find( { userId: req.user._id }, function( err, books ) {
        if (!err) {
-        console.log('boooooooooks', books);
          return res.send( books );
        } else {
          return console.log( err );
@@ -144,7 +142,6 @@ router.route('/books')
       comment: '',
       userId: req.user._id
     });
-    console.log(book);
     book.save( function( err ) {
       if (!err) {
         return console.log ( 'created' );

@@ -15,8 +15,8 @@ var app = app || {};
     // },
 
     library: function() {
-      var appView = new app.LibraryView();
-      appView.start();
+      app.appView = new app.LibraryView();
+      app.appView.start();
       $("#dateCompleted").datepicker();
       $('.update-dateCompleted').datepicker();
     },

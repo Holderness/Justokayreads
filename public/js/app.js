@@ -2,11 +2,14 @@ var app = app || {};
 
 $(function() {
 
-  $('#commentModal').on('shown.bs.modal', function(e) {
-    autosize.update($('textarea#commentInput'));
-  });
+  // $('#commentModal').on('shown.bs.modal', function(e) {
+  //   $('#comment-update-btn').on('click', function() {
+  //     app.book.trigger('updateBook');
+  //   });
+  //   autosize.update($('textarea#commentInput'));
+  // });
 
-  autosize($('textarea#commentInput'));
+  // autosize($('textarea#commentInput'));
 
   $('#logout').on('click', function() {
       $.ajax({

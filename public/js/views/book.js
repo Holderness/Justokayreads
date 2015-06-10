@@ -10,7 +10,7 @@ var app = app || {};
       'click .delete': 'delete',
       'starrr:change': 'updateStarrr',
       'click .edit': 'edit',
-      'click .comment': 'comment'
+      'click .comment': 'comment',
     },
 
     initialize: function() {
@@ -25,8 +25,21 @@ var app = app || {};
 
       $(".starrr").starrr();
 
+
+      var this_ = this;
+        $('#commentModal').on('shown.bs.modal', function(e) {
+          // $(this).on('click', '#comment-update-btn', function() {
+          //   this_.model.trigger('updateComment');
+          //   $('#commentModal').modal('hide');
+          // });
+          autosize.update($('textarea#commentInput'));
+        });
+      
+      
+
       return this;
     },
+
 
     edit: function() {
       var attrs = this.model.attributes;
@@ -74,12 +87,12 @@ var app = app || {};
 
     comment: function() {
       $('#commentInput').val(this.model.attributes.comment);
+
       app.book = this.model;
     },
 
     updateComment: function() {
       this.model.set('comment', $('#commentInput').val());
-
       this.model.save( null, {
         success: function(response) {
           console.log('successfuly UPDATED blog with _id: ' + response.toJSON()._id);

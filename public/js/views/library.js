@@ -19,6 +19,7 @@ var app = app || {};
 
       this.listenTo(this.thumbnailView, 'image-uploaded', this.updateInput);
       this.listenTo(app.booklist, 'filter', this.filter);
+      // this.listenToOnce(app.booklist, 'update-Comment', this.updateComment);
 
     },
 
@@ -44,8 +45,10 @@ var app = app || {};
     },
 
     updateComment: function() {
+      console.log('update comment triggererd');
       app.book.trigger('updateComment');
       $('#commentModal').modal('hide');
+      debugger;
     },
 
     filter: function() {
