@@ -25,18 +25,11 @@ var app = app || {};
 
       $(".starrr").starrr();
 
-
       var this_ = this;
         $('#commentModal').on('shown.bs.modal', function(e) {
-          // $(this).on('click', '#comment-update-btn', function() {
-          //   this_.model.trigger('updateComment');
-          //   $('#commentModal').modal('hide');
-          // });
           autosize.update($('textarea#commentInput'));
         });
       
-      
-
       return this;
     },
 

@@ -10,7 +10,6 @@ var app = app || {};
     events: {
       'click #add': 'addBook',
       'click #update': 'updateBook',
-      // 'click #comment-update-btn': 'updateComment',
     },
 
     initialize: function() {
@@ -26,7 +25,6 @@ var app = app || {};
     render: function() {
       this.$el.html(this.template());
       this.thumbnailView.setElement(this.$('#imageCoverUpload')).render();
-      // this.bookListView.setElement(this.$('#booksss'));
     },
 
     start: function() {

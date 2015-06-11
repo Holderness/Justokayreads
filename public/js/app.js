@@ -19,8 +19,8 @@ $(function() {
       });
   });
 
-  $('#addBook').on('click', function() {
-    app.LibraryRouter.navigate('library', {trigger: true});
-  });
+
+
+
 
 });
