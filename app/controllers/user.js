@@ -94,6 +94,7 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
             user = new User(profile);
 
             user.save(function(err) {
+              console.log(err);
               if (err) {
                 var message = _this.getErrorMessage(err);
                 req.flash('error', message);

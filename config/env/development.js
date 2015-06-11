@@ -8,5 +8,9 @@ module.exports = {
         clientSecret: '3675daf52fbe3271451c48030332714c',
         callbackURL: 'http://localhost:'+ port +'/oauth/facebook/callback'
   },
-  twitter: {}
+  twitter: {
+    clientID: 'PKYEgk3r3js8iZhBMz0ECoeo0',
+    clientSecret: 'oP7nBmve5jW7xqX5srvkL7uZriu1uKOHrY4PQFa8ACrl1zyuhO',
+    callbackURL: 'http://localhost:1313/oauth/twitter/callback'
+  }
 };
