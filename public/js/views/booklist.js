@@ -32,14 +32,14 @@ var app = app || {};
       autosize($('textarea#commentInput'));
       
 
-      // var this_ = this;
-        // $('#commentModal').on('shown.bs.modal', function(e) {
-        //   $(this).on('click', '#comment-update-btn', function() {
-        //     this_.collection.trigger('update-Comment');
-        //     $('#commentModal').modal('hide');
-        //   });
-        //   autosize($('textarea#commentInput'));
-        // });
+      var this_ = this;
+        $('#commentModal').on('shown.bs.modal', function(e) {
+          $(this).on('click', '#comment-update-btn', function() {
+            this_.trigger('update-Comment');
+            $('#commentModal').modal('hide');
+          });
+          autosize($('textarea#commentInput'));
+        });
      
     },
 

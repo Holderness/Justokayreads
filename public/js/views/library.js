@@ -10,7 +10,7 @@ var app = app || {};
     events: {
       'click #add': 'addBook',
       'click #update': 'updateBook',
-      'click #comment-update-btn': 'updateComment',
+      // 'click #comment-update-btn': 'updateComment',
     },
 
     initialize: function() {
@@ -19,7 +19,7 @@ var app = app || {};
 
       this.listenTo(this.thumbnailView, 'image-uploaded', this.updateInput);
       this.listenTo(app.booklist, 'filter', this.filter);
-      // this.listenToOnce(app.booklist, 'update-Comment', this.updateComment);
+      this.listenTo(this.bookListView, 'update-Comment', this.updateComment);
 
     },
 
@@ -48,7 +48,7 @@ var app = app || {};
       console.log('update comment triggererd');
       app.book.trigger('updateComment');
       $('#commentModal').modal('hide');
-      debugger;
+      this.stopListening(this.bookListView, 'update-Comment');
     },
 
     filter: function() {
