@@ -83,6 +83,15 @@ ul.navbar-nav {
   padding-right: 10px;
 }
 
+#please-login {
+  background: url("../img/pleaseLogin.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 1000px;
+  border: 2px solid #e7e7e7;
+  border-radius: 4px;
+
+}
 
 
 /*sort by*/

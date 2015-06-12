@@ -59,8 +59,11 @@
 
 
 
-
-  <div id="page-content">sdfgsdfg</div>
+  <$ if ( user ) { $>
+    <div id="page-content">sdfgsdfg</div>
+  <$ } else { $>
+    <div id="please-login"></div>
+  <$ } $>
 
 
 
