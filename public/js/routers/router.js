@@ -6,7 +6,9 @@ var app = app || {};
     
     routes: {
       '': 'library',
-      '*filter': 'mult'
+      'log': 'login',
+      'reg': 'register',
+      '*filter': 'mult',
     },
 
     // login: function() {
@@ -30,6 +32,14 @@ var app = app || {};
       app.BookFilter = param || '';
 
       app.booklist.trigger('filter');
+    },
+
+    login: function() {
+      app.appView = new app.LoginView();
+    },
+
+    register: function() {
+      app.appView = new app.RegisterView();
     }
   });
 

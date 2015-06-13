@@ -16,8 +16,7 @@ var UserSchema = new mongoose.Schema({
   },
   provider: String,
   providerId: String,
-  providerData: {},
-  books: []
+  providerData: {}
 });
 
 

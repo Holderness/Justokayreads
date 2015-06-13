@@ -1,5 +1,6 @@
 body {
   background-color: #eee;
+  padding-bottom: 0;
 }
 
 @font-face {
@@ -83,7 +84,7 @@ ul.navbar-nav {
   padding-right: 10px;
 }
 
-#please-login {
+#please-login .login-cover {
   background: url("../img/pleaseLogin.png") no-repeat;
   background-size: cover;
   background-position: center;
