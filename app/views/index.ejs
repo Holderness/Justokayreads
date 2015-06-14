@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Books!</title>
 
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css">
@@ -66,7 +66,7 @@
     <div id="page-content"></div>
   <$ } else { $>
     <div id="please-login">
-      <div class="login-cover"></div>
+      <div class="login-cover center-block"></div>
     </div>
   <$ } $>
  
@@ -242,12 +242,12 @@
         <img class="delete" src="img/delete.png">
         <div class="bookInteractionBar">
           <div class="bookUpdated">Last Updated: <%= moment(new Date(created)).fromNow() %></div>
-          <button class="bookButton"><a href="#" class="comment"
+          <a href="#" class="comment book-btn-funct"
                data-toggle="modal"
-               data-target="#commentModal">Comment</a></button> 
-          <button class="bookButton"><a href="#" class="edit"
+               data-target="#commentModal">Comment</a>  
+          <a href="#" class="edit book-btn-funct"
                 data-toggle="modal"
-                data-target="#editBookModal">Edit</a></button> 
+                data-target="#editBookModal">Edit</a>
         </div>
       </div>
     </div>

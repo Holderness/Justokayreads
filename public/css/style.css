@@ -10,6 +10,39 @@ body {
 }
 
 
+
+
+/*bootstrap overwrites*/
+
+.form-control:focus {
+  border-color: #C15030;
+  box-shadow: 0 0 10px #C15030;
+}
+
+.btn-primary {
+  outline: none;
+  background-image: linear-gradient(to bottom,#C15030 0, #8C2C29 100%);
+  border-color: #700000;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus{
+  outline: none;
+  background-color: #8C2C29;
+  background-image: linear-gradient(to bottom,#BF3F1B 0, #8C2C29 100%);
+}
+
+a {
+  color: #C15030
+}
+
+a:hover {
+  color: #8C2C29
+}
+
+
+
+
+
 /*navbar*/
 
 .nav {
@@ -56,16 +89,11 @@ ul.navbar-nav {
   margin-right: 50px;
 }
 
-.navbar-nav li a.add-book-btn:hover {
+.navbar-nav li a.add-book-btn:hover, .navbar-nav li a.add-book-btn:focus {
   background-color: #C15030;
   color: #fff;
   margin-top: 3px;
   border-bottom: none;
-}
-
-.navbar-nav li a.add-book-btn:focus {
-  background-color: #C15030;
-  color: #fff
 }
 
 .navbar-nav li h2 {
@@ -88,11 +116,22 @@ ul.navbar-nav {
   background: url("../img/pleaseLogin.png") no-repeat;
   background-size: cover;
   background-position: center;
+  max-width: 1300px;
   height: 1000px;
   border: 2px solid #e7e7e7;
-  border-radius: 4px;
-
+  border-radius: 12px;
+  box-shadow: 10px 10px 5px #999999;
+  margin-bottom: 20px
 }
+
+#please-login .container {
+  width: 400px;
+}
+
+
+
+
+
 
 
 /*sort by*/
@@ -121,6 +160,8 @@ ul.navbar-nav {
   background-image: none;
   background-color: #FABAA7;
 }
+
+
 
 
 
@@ -198,7 +239,7 @@ ul.navbar-nav {
 }
 
 .bookUpdated {
-  display: inline-block;
+  float: left;
   width: 145px;
 }
 
@@ -208,6 +249,27 @@ ul.navbar-nav {
   display: inline-block;
 }
 
+
+
+.book-btn-funct {
+  float: left;
+  background-color: #C15030;
+  text-align: center;
+  color: #fff;
+  outline: none;
+  border-bottom: 2px solid #8C2C11;
+  border-radius: 4px;
+  margin-right: 5px;
+  padding: 1px 9px;
+}
+
+.book-btn-funct:hover, .book-btn-funct:focus {
+  background-color: #C15030;
+  color: #fff;
+  margin-top: 2px;
+  border-bottom: none;
+  text-decoration: none;
+}
 
 
 /*comment*/
