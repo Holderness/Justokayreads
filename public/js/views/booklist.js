@@ -18,10 +18,6 @@ var app = app || {};
        console.log('add', arguments);
        this_.renderBook(arguments[0]);
       });
-      // this.on('sort', function() {
-      //   // How do I know what event was triggered?
-      //  console.log('sort', arguments);
-      // });
     },
 
     render: function() {
@@ -48,6 +44,7 @@ var app = app || {};
           });
           autosize($('textarea#commentInput'));
         });
+
      
     },
 

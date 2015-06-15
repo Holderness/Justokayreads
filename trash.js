@@ -25,3 +25,13 @@
 
   
  
+      if( this.sort_key === "author" || this.sort_key === "title" || this.sort_key === "dateCompleted") {
+        return this.sort_direction === 1 ?
+          -book.get(this.sort_key).localeCompare(book2.get(this.sort_key)) :
+          book.get(this.sort_key).localeCompare(book2.get(this.sort_key));
+      } else {
+        debugger;
+        return this.sort_direction === 1 ?
+          -book.get(this.sort_key) :
+          book.get(this.sort_key);
+      }

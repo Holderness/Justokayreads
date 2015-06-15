@@ -22,9 +22,22 @@ var app = app || {};
 
     },
 
+    filterBooks: function(e) {
+      e.preventDefault();
+      var filter = $(e.currentTarget).data('filter');
+      app.LibraryRouter.setFilter(filter);
+    },
+
     render: function() {
       this.$el.html(this.template());
       this.thumbnailView.setElement(this.$('#imageCoverUpload')).render();
+      var this_ = this;
+
+      $('.dropdown-menu').on('click', 'li', function(e) {
+        $(this).toggleClass('active');
+        this_.filterBooks(e);
+      });
+
     },
 
     start: function() {
@@ -50,7 +63,10 @@ var app = app || {};
     },
 
     filter: function() {
+      // debugger;
        app.booklist.sortByField(app.BookFilter);
+       // app.booklist.sort_direction = app.booklist.sort_direction === 1 ? -1 : 1;
+       this.stopListening(app.booklist, 'filter');
     },
 
     updateInput: function(path) {

@@ -23,15 +23,20 @@ var app = app || {};
       $('.update-dateCompleted').datepicker();
     },
 
-    mult: function(param) {
-      this.library();
-      this.setFilter(param);
-    },
+    // mult: function(param) {
+    //   this.setFilter(param);
+    //   debugger;
+    //   this.library();
+    // },
 
     setFilter: function(param) {
+      // debugger;
+
       app.BookFilter = param || '';
 
       app.booklist.trigger('filter');
+
+      this.library();
     },
 
     login: function() {

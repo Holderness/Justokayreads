@@ -88,9 +88,10 @@
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a href="#/title">Title</a></li>
-                  <li><a href="#/author">Author</a></li>
-                  <li><a href="#/dateCompleted">Date Completed</a></li>
+                  <li class="book-filter" data-filter="title"><a class="book-filter" href="#/title" data-filter="title">Title</a></li>
+                  <li class="book-filter" data-filter="author"><a class="book-filter" href="#/author" data-filter="author">Author</a></li>
+                  <li class="book-filter" data-filter="dateCompleted"><a class="book-filter" href="#/dateCompleted" data-filter="dateCompleted">Date Completed</a></li>
+                  <li class="book-filter" data-filter="stars"><a class="book-filter" href="#/stars" data-filter="stars">Rating</a></li>
                 </ul>
               </li>
               <li>
@@ -245,7 +246,7 @@
           <a href="#" class="comment book-btn-funct"
                data-toggle="modal"
                data-target="#commentModal">Comment</a>  
-          <a href="#" class="edit book-btn-funct"
+          <a href="#" class="edit book-btn-funct" 
                 data-toggle="modal"
                 data-target="#editBookModal">Edit</a>
         </div>
