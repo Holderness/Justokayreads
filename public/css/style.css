@@ -161,6 +161,15 @@ ul.navbar-nav {
   background-color: #FABAA7;
 }
 
+.add-a-book-pig-container {
+  min-width: 500px;
+  display: none;
+}
+
+.add-a-book-pig {
+  float: right;
+  padding: 30px 50px 0 0px;
+}
 
 
 
