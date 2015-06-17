@@ -8,6 +8,7 @@ var app = app || {};
       '': 'library',
       'log': 'login',
       'reg': 'register',
+      '_=_': 'library',
       '*filter': 'mult',
     },
 
