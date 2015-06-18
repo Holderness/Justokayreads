@@ -69,9 +69,10 @@ var app = app || {};
        this.stopListening(app.booklist, 'filter');
     },
 
-    updateInput: function(path) {
-      console.log(path);
-      $('#coverImage').val(path);
+    updateInput: function(url) {
+      console.log(url[0]);
+      debugger;
+      $('#coverImage').val(url[0]);
       this.createData();
     },
 
@@ -92,6 +93,7 @@ var app = app || {};
           }
           $( el ).val('');
         });
+        debugger;
         app.booklist.create( formData );
         $('#uploadedImage').val('');
     }

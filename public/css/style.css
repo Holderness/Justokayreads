@@ -118,9 +118,8 @@ ul.navbar-nav {
   background-position: center;
   max-width: 1300px;
   height: 1000px;
-  border: 2px solid #e7e7e7;
   border-radius: 12px;
-  box-shadow: 10px 10px 5px #999999;
+  box-shadow: 0px 0px 70px #999999;
   margin-bottom: 20px
 }
 

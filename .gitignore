@@ -1,3 +1,5 @@
 #.gitignore
 
-./config/env/
+config/env/development.js
+
+*.env

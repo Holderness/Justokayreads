@@ -4,6 +4,7 @@
   "description": "books!",
   "main": "index.js",
   "dependencies": {
+    "aws-sdk": "^2.1.34",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.12.4",
     "connect-flash": "^0.1.1",
