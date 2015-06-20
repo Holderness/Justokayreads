@@ -28,7 +28,7 @@ module.exports = function() {
   app.use(session({
     saveUninitialized: true,
     resave: true,
-    secret: 'OurSuperSecretCookieSecret'
+    secret: process.env.SESSION_SECRET
   }));
 
   app.set('views', './app/views');
@@ -137,8 +137,6 @@ module.exports = function() {
       return res.status(403).send('expect image file').end();
     }
 
-    // var pid = '10000' + parseInt(Math.random() * 10000000);
-
     uploadToS3(coverImageUpload, coverImageUpload.name, function (err, data) {
       if (err) {
         console.error(err);
@@ -152,10 +150,9 @@ module.exports = function() {
     });
   });
 
+  
 
-// 'File uploaded to S3: '
-//         + data.Location.replace(/</g, '&lt;')
-//         + '<br/><img src="' + data.Location.replace(/"/g, '&quot;') + '"/>'
+
   //routes
   
 
