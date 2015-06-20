@@ -133,8 +133,9 @@ module.exports = function() {
 
   require('../app/routes/index.js')(app);
   require('../app/routes/users.js')(app);
-  var books = require('../app/routes/book');
-  app.use( '/api', books );
+  // var books = require('../app/routes/book');
+  // app.use( '/api', books );
+  require('../app/routes/book.js')(app);
 
   app.use(express.static( path.join( __dirname, '../public') ) );
 

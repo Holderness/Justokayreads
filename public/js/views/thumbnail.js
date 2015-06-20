@@ -19,7 +19,6 @@ var app = app || {};
       var img = this.$('#uploadedImage')[0];
       if(input.val() !== '') {
         var selected_file = input[0].files[0];
-        debugger;
         var reader = new FileReader();
         reader.onload = (function(aImg) {
           return function(e) {
@@ -38,16 +37,14 @@ var app = app || {};
     upload: function() {
       var _this = this;
       if (this.$('#coverImageUpload')[0].files.length > 0) {
-        debugger;
         this.$form.ajaxSubmit({
           error: function( xhr ) {
             _this.renderStatus('Error: ' + xhr.status);
           },
           success: function( response ) {
-            debugger;
-            console.log('response: ', response);
+            console.log('imgUpload response: ', response);
             _this.trigger('image-uploaded', [response.url]);
-            console.log('path ', response.path);
+            console.log('imgUpload path ', response.path);
 
             _this.clearField();
           }

@@ -63,15 +63,13 @@ var app = app || {};
     },
 
     filter: function() {
-      // debugger;
        app.booklist.sortByField(app.BookFilter);
        // app.booklist.sort_direction = app.booklist.sort_direction === 1 ? -1 : 1;
        this.stopListening(app.booklist, 'filter');
     },
 
     updateInput: function(url) {
-      console.log(url[0]);
-      debugger;
+      console.log('img url: ', url[0]);
       $('#coverImage').val(url[0]);
       this.createData();
     },
@@ -93,7 +91,6 @@ var app = app || {};
           }
           $( el ).val('');
         });
-        debugger;
         app.booklist.create( formData );
         $('#uploadedImage').val('');
     }
