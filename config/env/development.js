@@ -1,3 +1,8 @@
+
+env = require('node-env-file');
+env('.env');
+
+
 var port = process.env.PORT || 1313;
 var db = process.env.MONGOLAB_URI || 'mongodb://localhost/library_database';
 var fbCallback = port === 1313 ?

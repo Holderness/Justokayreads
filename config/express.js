@@ -8,12 +8,14 @@ var config = require('./config'),
     passport = require('passport'),
     flash = require('connect-flash'),
     session = require('express-session'),
-    fs = require('fs');
+    fs = require('fs'),
     AWS = require('aws-sdk');
 
 module.exports = function() {
 
+  
   var app = express();
+
 
   ejs.delimiter = '$';
 
