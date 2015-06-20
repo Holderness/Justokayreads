@@ -2,103 +2,43 @@
 var express = require('express'),
     mongoose = require('mongoose'),
     passport = require('passport'),
-    bodyParser = require('body-parser');
+    multer = require('multer'),
+    bodyParser = require('body-parser'),
+    fs = require('fs'),
+    AWS = require('aws-sdk');
 
 var users = require('../controllers/user');
 
-// var authController = require('../controllers/auth');
+  // AWS
 
-//Connect to db
-// mongoose.connect( 'mongodb://localhost/library_database' );
+  var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+  var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+  var S3_BUCKET = process.env.S3_BUCKET;
+
+  AWS.config.update({
+    accessKeyId: AWS_ACCESS_KEY,
+    secretAccessKey: AWS_SECRET_KEY
+  });
+
+  var s3 = new AWS.S3({params: {Bucket: S3_BUCKET }});
 
 
-//Schemas
 
-// var Keywords = new mongoose.Schema({
-//   keyword: String
-// });
-
-// var Book = new mongoose.Schema({
-//   coverImage: String,
-//   title: String,
-//   author: String,
-//   dateCompleted: Date,
-//   created: Date,
-//   stars: Number,
-//   keywords: [ Keywords ],
-//   comment: String,
-//   userId: String
-// });
-
-// var User = new mongoose.Schema({
-//   username: {
-//     type: String,
-//     unique: true,
-//     required: true
-//   },
-//   password: {
-//     type: String,
-//     required: true
-//   }
-// });
-
-// // schema pre
-// //executes before each user.save() call
-// User.pre('save', function(callback) {
-//   var user = this;
-
-//   // Break out if the password hasn't changed
-//   if (!user.isModified('password')) return callback();
-  
-//   // Password changed so we need to hash it
-//   bcrypt.genSalt(5, function(err, salt) {
-//     if (err) return callback(err);
-
-//     bcrypt.hash(user.password, salt, null, function(err, hash) {
-//       if (err) return callback(err);
-//       user.password = hash;
-//       callback();
-//     });
-//   });
-// });
-
-// // Schema Methods
-// User.methods.verifyPassword = function(password, cb) {
-//   bcrypt.compare(password, this.password, function(err, isMatch) {
-//     if (err) return cb(err);
-//     cb(null, isMatch);
-//   });
-// };
-
+  function uploadToS3(file, destFileName, callback) {
+    s3
+        .upload({
+            ACL: 'public-read',
+            Body: fs.createReadStream(file.path),
+            Key: destFileName.toString()
+        })
+        .send(callback);
+  }
 
 
 
 //Models
 var BookModel = require('mongoose').model('Book');
 var UserModel = require('mongoose').model('User');
-
-
-
-
-// Passport
-
-// passport.use( new BasicStrategy(
-//   function(username, password, callback) {
-//     UserModel.findOne({ username: username }, function (err,user) {
-//       if (err) {return callback(err); }
-//       if (!user) { return callback(null, false); }
-//       user.verifyPassword(password, function(err, isMatch) {
-//         if (err) {return callback(err); }
-//         if (!isMatch) { return callback(null, false); }
-//         return callback(null, user);
-//       });
-//     });
-//   }
-// ));
-
-
-// var isAuthenticated = passport.authenticate('basic', {session : false });
-
 
 
 // Routers
@@ -110,15 +50,40 @@ router.route('/')
     res.send( 'Library API is running' );
   });
 
-// router.route('/logout')
-//   .get(function(req, res){
-//     res.redirect('/');
+// router.route('/cover')
+//   .post(function(req, res) {
+//     return res.send({ path: "img/uploads/" + req.files.coverImageUpload.name });
 //   });
 
-router.route('/cover')
-  .post(function(req, res) {
-    return res.send({ path: "img/uploads/" + req.files.coverImageUpload.name });
+router.route('/coverUpload')
+  .post(multer({limits: {fileSize:10*1024*1024}}), function (req, res) {
+
+    console.log('req.files: ', req.files);
+    console.log('req.files.coverImageUpload: ', req.files.coverImageUpload);
+
+    if (!req.files || !req.files.coverImageUpload) {
+      return res.status(403).send('expect 1 file upload named coverImageUpload').end();
+    }
+    var coverImageUpload = req.files.coverImageUpload;
+
+    // this is mainly for user friendliness. this field can be freely tampered by attacker.
+    if (!/^image\/(jpe?g|png|gif)$/i.test(coverImageUpload.mimetype)) {
+      return res.status(403).send('expect image file').end();
+    }
+
+    uploadToS3(coverImageUpload, coverImageUpload.name, function (err, data) {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('failed to upload to s3').end();
+      }
+      // return res.send({ path: "img/uploads/" + req.files.coverImageUpload.name });
+      console.log('data: ', data);
+      res.status(200)
+        .send({ url: data.Location, ETag: data.ETag })
+        .end();
+    });
   });
+
 
 router.route('/books')
   .get(function(req, res) {
@@ -194,40 +159,6 @@ router.route('/books/:id')
     });
   });
 
-
-// router.route('/users')
-//   .get(function(req, res) {
-//     return UserModel.find(function(err, users) {
-//       if (err) res.send(err);
-//       return res.send(users);
-//     });
-//   })
-//   .post(function(req, res) {
-//     console.log('Creating user ' + req.body.username);
-//     var user = new UserModel({
-//       username: req.body.username,
-//       password: req.body.password
-//     });
-
-//     user.save(function(err) {
-//       if (err) res.send(err);
-//       return res.send({message: 'New User: ' + req.body.username});
-//     });
-
-//     console.log('usrrr', req.user);
-//   });
-
-// router.route('/users/:userId').get(users.read);
-
-// router.param('userId', users.userByID);
-
-
-// router.route('/login')
-
-//     .post(passport.authenticate('local', {
-//       successRedirect: '/',
-//       failureRedirect: '/'
-//     }));
 
 module.exports = router;
 

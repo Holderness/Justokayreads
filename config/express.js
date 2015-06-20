@@ -7,9 +7,7 @@ var config = require('./config'),
     bcrypt = require('bcrypt-nodejs'),
     passport = require('passport'),
     flash = require('connect-flash'),
-    session = require('express-session'),
-    fs = require('fs'),
-    AWS = require('aws-sdk');
+    session = require('express-session');
 
 module.exports = function() {
 
@@ -39,30 +37,7 @@ module.exports = function() {
   app.use(passport.session());
 
 
-  // AWS
-
-  var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
-  var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
-  var S3_BUCKET = process.env.S3_BUCKET;
-
-  AWS.config.update({
-    accessKeyId: AWS_ACCESS_KEY,
-    secretAccessKey: AWS_SECRET_KEY
-  });
-
-  var s3 = new AWS.S3({params: {Bucket: S3_BUCKET }});
-
-  app.use( multer({ dest: __dirname + '../../public/img/uploads/' }) );
-
-  function uploadToS3(file, destFileName, callback) {
-    s3
-        .upload({
-            ACL: 'public-read',
-            Body: fs.createReadStream(file.path),
-            Key: destFileName.toString()
-        })
-        .send(callback);
-  }
+    // app.use( multer({ dest: __dirname + '../../public/img/uploads/' }) );
 
 //   function get_signed_request(file){
 //     var xhr = new XMLHttpRequest();
@@ -122,33 +97,33 @@ module.exports = function() {
   //   return res.send({ path: "img/uploads/" + req.files.coverImageUpload.name });
   // });
  
-  app.post('/upload', multer({limits: {fileSize:10*1024*1024}}), function (req, res) {
+  // app.post('/upload', multer({limits: {fileSize:10*1024*1024}}), function (req, res) {
 
-    console.log('req.files: ', req.files);
-    console.log('req.files.coverImageUpload: ', req.files.coverImageUpload);
+  //   console.log('req.files: ', req.files);
+  //   console.log('req.files.coverImageUpload: ', req.files.coverImageUpload);
 
-    if (!req.files || !req.files.coverImageUpload) {
-      return res.status(403).send('expect 1 file upload named coverImageUpload').end();
-    }
-    var coverImageUpload = req.files.coverImageUpload;
+  //   if (!req.files || !req.files.coverImageUpload) {
+  //     return res.status(403).send('expect 1 file upload named coverImageUpload').end();
+  //   }
+  //   var coverImageUpload = req.files.coverImageUpload;
 
-    // this is mainly for user friendliness. this field can be freely tampered by attacker.
-    if (!/^image\/(jpe?g|png|gif)$/i.test(coverImageUpload.mimetype)) {
-      return res.status(403).send('expect image file').end();
-    }
+  //   // this is mainly for user friendliness. this field can be freely tampered by attacker.
+  //   if (!/^image\/(jpe?g|png|gif)$/i.test(coverImageUpload.mimetype)) {
+  //     return res.status(403).send('expect image file').end();
+  //   }
 
-    uploadToS3(coverImageUpload, coverImageUpload.name, function (err, data) {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('failed to upload to s3').end();
-      }
-      // return res.send({ path: "img/uploads/" + req.files.coverImageUpload.name });
-      console.log('data: ', data);
-      res.status(200)
-      .send({ url: data.Location, ETag: data.ETag })
-      .end();
-    });
-  });
+  //   uploadToS3(coverImageUpload, coverImageUpload.name, function (err, data) {
+  //     if (err) {
+  //       console.error(err);
+  //       return res.status(500).send('failed to upload to s3').end();
+  //     }
+  //     // return res.send({ path: "img/uploads/" + req.files.coverImageUpload.name });
+  //     console.log('data: ', data);
+  //     res.status(200)
+  //     .send({ url: data.Location, ETag: data.ETag })
+  //     .end();
+  //   });
+  // });
 
   
 
