@@ -3,9 +3,23 @@ var app = app || {};
 
 (function() {
 
-  app.BookList = Backbone.Collection.extend({
+  app.BookList = Backbone.PageableCollection.extend({
     model: app.Book,
     url: '/api/books',
+    mode: "client",
+    state: {
+      firstPage: 0,
+      currentPage: 0,
+      pageSize: 3,
+    },
+
+    queryParams: {
+
+    // `Backbone.PageableCollection#queryParams` converts to ruby's
+    // will_paginate keys by default.
+      currentPage: "current_page",
+      pageSize: "page_size"
+  },
 
     initialize: function() {
       this.on('sort', function() {
@@ -14,7 +28,8 @@ var app = app || {};
       });
       this.on('reset', function() {
         // How do I know what event was triggered?
-       console.log('reset', arguments);
+       console.log('booklist reset:   ', arguments);
+
       });
             this.on('change', function() {
         // How do I know what event was triggered?

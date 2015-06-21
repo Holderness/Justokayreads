@@ -9,19 +9,43 @@ var app = app || {};
   
     initialize: function() {
       // this.listenTo(this.collection, 'add', this.renderBook);
-      this.listenTo(this.collection, 'reset', this.render);
-      this.listenTo(this.collection, 'change', this.render);
+      // this.listenTo(this.collection, 'reset', this.render);
       // this.listenTo(this.collection, 'sort', this.render);
+      this.listenTo(this.collection, 'change', this.render);
       var this_ = this;
+
+      this.el = '#bookList';
+
+      this.collection.on('reset', function() {
+        // How do I know what event was triggered?
+       console.log('fortheloveofgodreset', arguments);
+       console.log(this);
+       this_.render();
+       
+      });
+      
       this.collection.on('add', function() {
         // How do I know what event was triggered?
        console.log('add', arguments);
        this_.renderBook(arguments[0]);
       });
+      
+
+      var paginator = new Backgrid.Extension.Paginator({
+        renderIndexedPageHandles: false,
+        collection: this.collection,
+        controls: {
+          rewind: null,
+          fastForward: null
+        }
+      });
+      $("#paginator").empty().append(paginator.render().$el);
+
     },
 
     render: function() {
       this.remove();
+      $(this.el).empty();
       console.log('render each');
       this.collection.each(function (item) {
         this.renderBook(item);
@@ -45,6 +69,7 @@ var app = app || {};
           });
           autosize($('textarea#commentInput'));
         });
+
     },
 
     renderBook: function(item) {
@@ -52,7 +77,7 @@ var app = app || {};
         model: item
       });
       if ($('.add-a-book-pig-container')) { $('.add-a-book-pig-container').remove(); }
-      $(bookView.render().el).appendTo('#bookList');
+      $(bookView.render().el).appendTo($(this.el));
     }
 
   });

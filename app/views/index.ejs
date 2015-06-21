@@ -61,6 +61,7 @@
 
   <$ if ( user ) { $>
     <div id="page-content"></div>
+    <div id="paginator"></div>
   <$ } else { $>
     <div id="please-login">
       <div class="login-cover center-block"></div>
@@ -356,6 +357,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="js/lib/underscore.js"></script>
   <script src="js/lib/backbone.js"></script>
+    <script src="js/lib/backbone.paginator.min.js"></script>
+    <script src="js/lib/backgrid.js"></script>
+    <script src="js/lib/backgrid-paginator.js"></script>
   <script src="js/models/book.js"></script>
   <script src="js/models/login.js"></script>
   <script src="js/collections/booklist.js"></script>
