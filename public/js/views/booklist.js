@@ -19,11 +19,9 @@ var app = app || {};
       this.collection.on('reset', function() {
         // How do I know what event was triggered?
        console.log('fortheloveofgodreset', arguments);
-       console.log(this);
        this_.render();
-       
       });
-      
+
       this.collection.on('add', function() {
         // How do I know what event was triggered?
        console.log('add', arguments);
@@ -56,19 +54,14 @@ var app = app || {};
       
 
       var this_ = this;
-      // $('#addBookModal').on('shown.bs.modal', function(e) {
-      //   $(this).on('click', '#addbook-btn', function() {
-      //     this_.render()
-      //   });
-      // });
 
-        $('#commentModal').on('shown.bs.modal', function(e) {
-          $(this).on('click', '#comment-update-btn', function() {
-            this_.trigger('update-Comment');
-            $('#commentModal').modal('hide');
-          });
-          autosize($('textarea#commentInput'));
+      $('#commentModal').on('shown.bs.modal', function(e) {
+        $(this).on('click', '#comment-update-btn', function() {
+          this_.trigger('update-Comment');
+          $('#commentModal').modal('hide');
         });
+        autosize($('textarea#commentInput'));
+      });
 
     },
 

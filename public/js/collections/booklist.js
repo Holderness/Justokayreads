@@ -10,7 +10,7 @@ var app = app || {};
     state: {
       firstPage: 0,
       currentPage: 0,
-      pageSize: 3,
+      pageSize: 10,
     },
 
     queryParams: {
