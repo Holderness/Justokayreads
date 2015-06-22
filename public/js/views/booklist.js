@@ -15,7 +15,11 @@ var app = app || {};
       var this_ = this;
 
       this.el = '#bookList';
-
+      this.collection.on('sort', function() {
+        // How do I know what event was triggered?
+       console.log('sort', arguments);
+       this_.render();
+      });
       this.collection.on('reset', function() {
         // How do I know what event was triggered?
        console.log('fortheloveofgodreset', arguments);

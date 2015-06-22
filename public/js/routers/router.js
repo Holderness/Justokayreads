@@ -37,7 +37,7 @@ var app = app || {};
 
       app.booklist.trigger('filter');
 
-      this.library();
+      // this.library();
     },
 
     login: function() {

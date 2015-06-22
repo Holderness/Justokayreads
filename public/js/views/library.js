@@ -34,7 +34,17 @@ var app = app || {};
       var this_ = this;
 
       $('.dropdown-menu').on('click', 'li', function(e) {
-        $(this).toggleClass('active');
+        $(this).parent().children().removeClass('active');
+        $(this).addClass('active');
+        if ($(this).find('i').hasClass('fa-sort-asc')) {
+          $(this).parent().find('i').removeClass('fa-sort-asc');
+          $(this).parent().find('i').removeClass('fa-sort-desc');
+          $(this).find('i').addClass('fa fa-sort-desc');
+        } else {
+          $(this).parent().find('i').removeClass('fa-sort-asc');
+          $(this).parent().find('i').removeClass('fa-sort-desc');
+          $(this).find('i').addClass('fa fa-sort-asc');
+        }
         this_.filterBooks(e);
       });
 
@@ -65,7 +75,9 @@ var app = app || {};
     filter: function() {
        app.booklist.sortByField(app.BookFilter);
        // app.booklist.sort_direction = app.booklist.sort_direction === 1 ? -1 : 1;
-       this.stopListening(app.booklist, 'filter');
+       // app.booklist.fetch({ reset: true });
+       // app.booklist.trigger('reset');
+       // this.stopListening(app.booklist, 'filter');
     },
 
     updateInput: function(url) {

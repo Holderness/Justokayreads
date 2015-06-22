@@ -73,7 +73,7 @@ var app = app || {};
     sortByField: function(fieldName) {
       this.sort_key = fieldName;
       this.sort_direction = this.sort_direction === 1 ? -1 : 1;
-      // this.sort();
+      this.sort();
     },
 
     // toggleComparator: function(book) {
