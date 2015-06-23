@@ -10,6 +10,9 @@ body {
 }
 
 
+/* removes blue outline */
+a:focus {outline:0 !important;}
+button:focus {outline:0 !important;}
 
 
 /*bootstrap overwrites*/

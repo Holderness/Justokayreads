@@ -40,6 +40,7 @@ var app = app || {};
         this.$form.ajaxSubmit({
           error: function( xhr ) {
             _this.renderStatus('Error: ' + xhr.status);
+            alert('Your image is either too large or it is not a .jpeg, .png, or .gif.');
           },
           success: function( response ) {
             console.log('imgUpload response: ', response);
