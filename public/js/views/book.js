@@ -39,7 +39,7 @@ var app = app || {};
       $('.updateImage').attr('src', attrs.coverImage);
       $('.update-title').val(attrs.title);
       $('.update-author').val(attrs.author);
-      $('.update-dateCompleted').val(attrs.dateCompleted);
+      $('.update-dateCompleted').val(moment(attrs.dateCompleted).format('MM/DD/YYYY'));
       var keywords = [];
       _.each( attrs.keywords, function(keyword) {
         if (!_.isEmpty(keyword.keyword)) {
