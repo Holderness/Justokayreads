@@ -154,3 +154,23 @@ exports.remove = function(req, res, next) {
    });
   });
 };
+
+
+
+exports.findBy = function(req, res, next) {
+  console.log( 'user: ', req.user );
+  console.log( 'req.query: ', req.query );
+  var term = req.query.term;
+  var value = req.query.value;
+  var string = "'this." + term + " == this." + value + "'";
+  console.log('term: ', term);
+  console.log('value: ', value);
+  console.log('string: ', string);
+  return BookModel.find({ userId: req.user._id, title: {$regex: value } }, function( err, book ) {
+    console.log(book);
+  });
+
+};
+
+
+

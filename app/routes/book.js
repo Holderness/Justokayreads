@@ -9,7 +9,10 @@ module.exports = function(app) {
 
   app.route('/api/books').get(book.findAll).post(book.add);
 
+  app.route('/api/search/').get(book.findBy);
+
   app.route('/api/books/:id').get(book.find).put(book.update).delete(book.remove);
+
 };
 
 

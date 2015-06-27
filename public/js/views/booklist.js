@@ -67,6 +67,28 @@ var app = app || {};
         autosize($('textarea#commentInput'));
       });
 
+      // $('.comment').on('click', function() {
+      //      debugger;
+      // });
+
+     $('.comment').on('click', function() {
+     $.ajax({
+        url: '/api/search/',
+        method: 'GET',
+        data: {"term": "title", "value": "thought"},
+        success: function(response) {
+          debugger;
+           console.log(response);
+        },
+        error: function(xhr) {
+          debugger;
+        }
+      })
+      .done(function(data) {
+        console.log(data);
+      });
+    });
+
     },
 
     renderBook: function(item) {
