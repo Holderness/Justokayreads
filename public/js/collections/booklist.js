@@ -31,7 +31,7 @@ var app = app || {};
        console.log('booklist reset:   ', arguments);
 
       });
-            this.on('change', function() {
+      this.on('change', function() {
         // How do I know what event was triggered?
        console.log('change', arguments);
       });
@@ -47,14 +47,7 @@ var app = app || {};
     comparator: function(book, book2) {
       console.log(this.sort_key);
       console.log(this.sort_direction);
-      // var sort;
-      // if( this.sort_key === "author" || this.sort_key === "title" || this.sort_key === "dateCompleted") {
-      //   debugger;
-      //   sort = this.sort_direction === 1 ?
-      //     -book.get(this.sort_key).localeCompare(book2.get(this.sort_key)) :
-      //     book.get(this.sort_key).localeCompare(book2.get(this.sort_key));
-      // } else {
-        // debugger;
+
         var a = book.get(this.sort_key);
         var b = book2.get(this.sort_key);
         var sort = this.sort_direction === 1 ?
@@ -73,7 +66,8 @@ var app = app || {};
     sortByField: function(fieldName) {
       this.sort_key = fieldName;
       this.sort_direction = this.sort_direction === 1 ? -1 : 1;
-      this.sort();
+      this.setSorting(fieldName, this.sort_direction, {full: true});
+      this.fullCollection.sort();
     },
 
     // toggleComparator: function(book) {
