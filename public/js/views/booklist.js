@@ -67,13 +67,14 @@ var app = app || {};
         autosize($('textarea#commentInput'));
       });
 
-      function fetttch() {
-        this_.collection.fetch({ url: '/api/search/', data: {"term": "title", "value": "tho"}});
-      }
 
-     $('.comment').on('click', function() {
-        // ajaxCall(newModels);
-        fetttch();
+  // search listener, needs new home.
+     $('#search').on('keyup', function(e, data) {
+        var query = $(this).val();
+        if(e.keyCode == 13){
+          this_.collection.fetch({ url: '/api/search/', data: {"value": query}});
+        }
+        return this;
      });
 
     },
