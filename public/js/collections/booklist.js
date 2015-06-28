@@ -45,11 +45,10 @@ var app = app || {};
     sort_direction: 1,
 
     comparator: function(book, book2) {
-      console.log(this.sort_key);
-      console.log(this.sort_direction);
 
         var a = book.get(this.sort_key);
         var b = book2.get(this.sort_key);
+
         var sort = this.sort_direction === 1 ?
          ( a > b ?  -1
          : a < b ? 1
@@ -57,8 +56,7 @@ var app = app || {};
          ( a > b ?  1
          : a < b ? -1
          :          0) ;
-         // fuck, I can't believe this works
-      // }
+
       return sort;
 
     },
@@ -69,11 +67,6 @@ var app = app || {};
       this.setSorting(fieldName, this.sort_direction, {full: true});
       this.fullCollection.sort();
     },
-
-    // toggleComparator: function(book) {
-    //   this.toggleComparator(book);
-    //   return book.get(this.sort_key);
-    // }
 
   });
 

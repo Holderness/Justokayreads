@@ -162,12 +162,15 @@ exports.findBy = function(req, res, next) {
   console.log( 'req.query: ', req.query );
   var term = req.query.term;
   var value = req.query.value;
-  var string = "'this." + term + " == this." + value + "'";
   console.log('term: ', term);
   console.log('value: ', value);
-  console.log('string: ', string);
-  return BookModel.find({ userId: req.user._id, title: {$regex: value } }, function( err, book ) {
-    console.log(book);
+  return BookModel.find({ userId: req.user._id, $or: [ {author: {$regex: value }}, {title: {$regex: value }}, {keyword: {$regex: value }} ]  }, function( err, book ) {
+    if (!err) {
+      console.log( book );
+      return res.send( book );
+    } else {
+      return console.log( err );
+    }
   });
 
 };
