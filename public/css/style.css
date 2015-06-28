@@ -13,6 +13,7 @@ body {
 /* removes blue outline */
 a:focus {outline:0 !important;}
 button:focus {outline:0 !important;}
+input:focus {outline:0 !important;}
 
 
 /*bootstrap overwrites*/
@@ -172,6 +173,59 @@ ul.navbar-nav {
   padding: 30px 50px 0 0px;
 }
 
+.search-books {
+  margin-right: 10px;
+}
+
+.search-books .icon {
+  padding: 6px 0 0 15px;
+  position: absolute;
+  color: #781A00;
+}
+
+
+.search-books input {
+  line-height: 30px;
+  border: none;
+  color: inherit;
+
+  float: right;
+  background-color: #C15030;
+  text-align: left;
+  color: #fff;
+  outline: none;
+  border-bottom: 2px solid #8C2C11;
+  border-radius: 4px;
+  padding: 1px 0px 1px 40px;
+
+  -webkit-transition: background .55s ease, color .55s ease, border-color .55s ease;
+  -moz-transition: background .55s ease, color .55s ease, border-color .55s ease;
+  -ms-transition: background .55s ease, color .55s ease, border-color .55s ease;
+  -o-transition: background .55s ease, color .55s ease, border-color .55s ease;
+  transition: background .55s ease, color .55s ease, border-color .55s ease;
+}
+
+.search-books input#search::-webkit-input-placeholder {
+   color: inherit;
+}
+
+.search-books input#search:-moz-placeholder { /* Firefox 18- */
+   color: inherit;  
+}
+
+.search-books input#search::-moz-placeholder {  /* Firefox 19+ */
+   color: inherit;  
+}
+
+.search-books input#search:-ms-input-placeholder {  
+   color: inherit;  
+}
+
+.search-books input:hover, .search-books input:focus, .search-books input:active{
+    background-color:  #eee;
+    color: #781A00;
+    border-color: #eee;
+  }
 
 
 

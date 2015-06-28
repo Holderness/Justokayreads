@@ -50,7 +50,6 @@ var app = app || {};
       $(this.el).empty();
       console.log('render each');
       this.collection.each(function (item) {
-        debugger;
         this.renderBook(item);
       }, this);
       if (this.collection.length === 0) { $('.add-a-book-pig-container').show(); }
@@ -71,37 +70,6 @@ var app = app || {};
       function fetttch() {
         this_.collection.fetch({ url: '/api/search/', data: {"term": "title", "value": "tho"}});
       }
-
-      // function ajaxCall(callback) {
-      //   $.ajax({
-      //     url: '/api/search/',
-      //     method: 'GET',
-      //     data: {"term": "title", "value": "tho"},
-      //     success: function(response) {
-      //       console.log('success: ', response);
-      //     },
-      //     error: function(xhr) {
-      //       console.log(xhr);
-      //     }
-      //   })
-      //   .done(function(data) {
-      //     console.log('done: ', data);
-      //     callback(data);
-      //   });
-      // }
-
-      // function newModels(res) {
-      //   $(this_.el).empty();
-      //   debugger;
-      //     res.forEach(function (item) {
-      //       debugger;
-      //       this_.renderBook(item);
-      //     }, this_);
-      //   console.log('cb: ', res);
-      // }
-
-     
-
 
      $('.comment').on('click', function() {
         // ajaxCall(newModels);
