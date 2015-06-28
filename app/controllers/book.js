@@ -164,7 +164,7 @@ exports.findBy = function(req, res, next) {
   var value = req.query.value;
   console.log('term: ', term);
   console.log('value: ', value);
-  return BookModel.find({ userId: req.user._id, $or: [ {author: {$regex: value }}, {title: {$regex: value }}, {keyword: {$regex: value }} ]  }, function( err, book ) {
+  return BookModel.find({ userId: req.user._id, $or: [ {author: {$regex: value, $options: 'i' }}, {title: {$regex: value, $options: 'i'  }}, {keyword: {$regex: value, $options: 'i' }} ]  }, function( err, book ) {
     if (!err) {
       console.log( book );
       return res.send( book );
