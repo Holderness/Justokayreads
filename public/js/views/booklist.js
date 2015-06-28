@@ -74,6 +74,9 @@ var app = app || {};
         if(e.keyCode == 13){
           this_.collection.fetch({ url: '/api/search/', data: {"value": query}});
         }
+        if ( query === "" ) {
+          this_.collection.fetch({reset: true});
+        }
         return this;
      });
 
