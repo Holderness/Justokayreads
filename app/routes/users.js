@@ -16,29 +16,29 @@ module.exports = function(app) {
     .get(users.renderLogin)
     .post(passport.authenticate('local', {
       successRedirect: '/',
-      failureRedirect: '/login',
+      failureRedirect: '/#log',
       failureFlash: true
     }));
 
   app.get('/logout', users.logout);
 
   app.get('/oauth/facebook', passport.authenticate('facebook', {
-    failureRedirect: '/login',
+    failureRedirect: '/#log',
     scope:['email']
   }));
 
   app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
-    failureRedirect: '/login',
+    failureRedirect: '/#log',
     successRedirect: '/',
     scope:['email']
   }));
 
   app.get('/oauth/twitter', passport.authenticate('twitter', {
-    failureRedirect: '/login'
+    failureRedirect: '/#log'
   }));
 
   app.get('/oauth/twitter/callback', passport.authenticate('twitter', {
-    failureRedirect: '/login',
+    failureRedirect: '/#log',
     successRedirect: '/'
   }));
 };

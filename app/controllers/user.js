@@ -25,12 +25,14 @@ var getErrorMessage = function(err) {
 
 exports.renderLogin = function(req, res, next) {
   if (!req.user) {
+    console.log('wwwwwwuuuuuuuuuu');
     res.render('login', {
       title: 'Log-in Form',
       messages: req.flash('error') || req.flash('info')
     });
   }
   else {
+    console.log('wwwwwwuttttttuuu');
     return res.redirect('/');
   }
 };
@@ -145,7 +147,7 @@ exports.read = function(req, res) {
 exports.userByID = function(req, res, next, id) {
   User.findOne({
       _id: id
-    }, 
+    },
     function(err, user) {
       if (err) {
         return next(err);
