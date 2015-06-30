@@ -383,7 +383,7 @@ ul.navbar-nav {
 
 #commentInput {
   outline: none;
-  width: 545px;
+  width: 94%;
   margin: 10px;
   border: none;
   resize: vertical;
@@ -538,6 +538,40 @@ ul.navbar-nav {
     padding: 25px 0 0 50px;
     font-family: 'Quando', garamond;
     font-size: 25px;
+  }
+
+  .modal-content {
+    min-width: 372px;
+  }
+
+  #updateBook {
+    position: relative;
+    left: 14%;
+  }
+
+  #updateBook label {
+    float: left;
+    text-align: left;
+  }
+
+  #updateBook input {
+    float: none;
+    text-align: left;
+  }
+
+  #addBook {
+    position: relative;
+    left: 14%;
+  }
+
+  #addBook label {
+    float: left;
+    text-align: left;
+  }
+
+  #addBook input {
+    float: none;
+    text-align: left;
   }
 
   .add-book-btn {
