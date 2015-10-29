@@ -8,10 +8,10 @@ var port = process.env.PORT || 1313;
 var db = process.env.MONGOLAB_URI || 'mongodb://localhost/library_database';
 var fbCallback = port === 1313 ?
       'http://localhost:'+ port +'/oauth/facebook/callback' :
-      'https://bklst.herokuapp.com/oauth/facebook/callback';
+      'https://justokayreads.herokuapp.com/oauth/facebook/callback';
 var twCallback = port === 1313 ?
       'http://localhost:1313/oauth/twitter/callback' :
-      'https://bklst.herokuapp.com/oauth/twitter/callback';
+      'https://justokayreads.herokuapp.com/oauth/twitter/callback';
 
 module.exports = {
   port: port,
